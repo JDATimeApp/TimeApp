@@ -3,5 +3,6 @@
     <string name="txt_password">Password</string>
     <string name="txt_username">Username</string>
     <string name="login_image_desc">Logo image</string>
-    <string name="entrar">Login</string>
+    <string name="login">Login</string>
+    <string name="btn_register">Register</string>
 </resources>
