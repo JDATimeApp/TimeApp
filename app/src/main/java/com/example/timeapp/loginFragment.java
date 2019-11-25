@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 
 public class loginFragment extends Fragment {
 
-    private LoginViewModel mViewModel;
+    private LoginViewModel loginViewModel;
 
     public static loginFragment newInstance() {
         return new loginFragment();
@@ -29,8 +29,9 @@ public class loginFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
+        loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
         // TODO: Use the ViewModel
     }
+
 
 }
