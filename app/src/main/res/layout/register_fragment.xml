@@ -51,7 +51,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:importantForAutofill="no"
-            android:hint="@string/txt_password"
+            android:hint="@string/txt_username"
             android:gravity="center"
             android:background="@drawable/background_text_edit"
             android:inputType="textPassword" />
@@ -67,7 +67,7 @@
             android:importantForAutofill="no"
             android:inputType="textPassword"
             android:background="@drawable/background_text_edit"
-            android:hint="@string/email_address"/>
+            android:hint="@string/txt_password"/>
 
     </LinearLayout>
 

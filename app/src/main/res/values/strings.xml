@@ -10,5 +10,7 @@
     <string name="remember_password">Remember Password</string>
     <string name="get_in">Login</string>
     <string name="orr">OR</string>
+    <string name="email_address">Email address</string>
+
 
 </resources>
