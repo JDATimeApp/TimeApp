@@ -20,8 +20,8 @@
 
     <ImageView
         android:id="@+id/imgLogo"
-        android:layout_width="167dp"
-        android:layout_height="121dp"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
         android:layout_marginTop="52dp"
         android:contentDescription="@string/login_image_desc"
         android:src="@drawable/ic_launcher_background"
