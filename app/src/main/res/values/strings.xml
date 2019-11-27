@@ -6,11 +6,10 @@
     <string name="login">Login</string>
     <string name="btn_register">Register</string>
     <string name="login_image_register">Logo image</string>
-    <string name="forgot_password">Forgot Password</string>
+    <string name="forgot_password">Forgot the Password?</string>
     <string name="remember_password">Remember Password</string>
     <string name="get_in">Login</string>
     <string name="orr">OR</string>
     <string name="email_address">Email address</string>
-
-
+    <string name="account_Register">Don t have an account? Register</string>
 </resources>

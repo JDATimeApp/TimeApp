@@ -27,7 +27,6 @@
 
     </LinearLayout>
 
-
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
@@ -110,7 +109,7 @@
             android:id="@+id/forgot_password1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/remember_password"
+            android:text="@string/forgot_password"
             android:hint="@string/forgot_password"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="30dp"
@@ -124,16 +123,16 @@
             android:id="@+id/linkRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right"
+            android:gravity="end"
             android:layout_marginLeft="40dp"
-            android:text="No tienes Cuenta? Registrate"
+            android:text="@string/account_Register"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/forgot_password1"
-            tools:layout_editor_absoluteY="513dp" />
+            tools:layout_editor_absoluteY="513dp"
+            android:layout_marginStart="40dp" />
 
     </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -150,6 +149,7 @@
             android:gravity="center"
             android:text="@string/orr"
             android:hint="@string/orr"
+            android:layout_marginTop="20dp"
             android:textSize="24sp"
             android:layout_marginBottom="20dp"
             app:layout_constraintEnd_toEndOf="parent"
