@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -54,7 +55,7 @@
             android:hint="@string/txt_username"
             android:gravity="center"
             android:background="@drawable/background_text_edit"
-            android:inputType="textPassword" />
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/txtEditPassword"
@@ -87,8 +88,9 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_gravity="center"
+            android:background="@drawable/btn_register"
             android:text="@string/btn_register"
-            android:background="@drawable/btn_register"/>
+            />
 
     </LinearLayout>
 </RelativeLayout>
