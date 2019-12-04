@@ -41,14 +41,14 @@ public class registerFragment extends Fragment {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean t = registerViewModel.registerNewUser(editTxtEmail.getText().toString(),
+                boolean t = registerViewModel.checkIfUserIsRegistered(editTxtEmail.getText().toString(),
                         editTxtUsername.getText().toString(),
                         editTxtPassword.getText().toString(),getContext());
 
-                if(t){
-                    Toast.makeText(getContext(),"Has entrado",Toast.LENGTH_SHORT).show();
+                if(t == true){
+                    Toast.makeText(getContext(),"That username is already registered!",Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getContext(),"No has entrado",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),"Thank you for registering "+editTxtEmail.getText().toString(),Toast.LENGTH_SHORT).show();
 
                 }
                 Log.d("Click","clickado");

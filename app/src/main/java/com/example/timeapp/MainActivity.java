@@ -7,8 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.timeapp.Views.registerFragment;
 
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -16,8 +17,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = new loginFragment();
+        Fragment fragment = new registerFragment();
 
-        fm.beginTransaction().replace(R.id.fragment_container,fragment,"Login").commit();
+        fm.beginTransaction().replace(R.id.fragment_container,fragment,"Register").commit();
     }
 }

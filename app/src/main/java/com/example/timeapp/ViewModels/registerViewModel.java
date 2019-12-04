@@ -7,17 +7,23 @@ import java.io.FileNotFoundException;
 
 public class registerViewModel extends ViewModel {
 
-    public boolean registerNewUser(String username, String passwd, String email, Context c)  {
+    /*public boolean registerNewUser(String username, String passwd, String email, Context c) {
 
-        try{
-            Boolean t = Repository.registerNewUser(username,passwd,email,c);
+            Boolean t = Repository.registerNewUser(username, passwd, email, c);
 
-            if (!t){
+            if (!t) {
                 return false;
             }
-        } catch (FileNotFoundException e){
-            e.printStackTrace();
+            return true;
+    }
+*/
+    public boolean checkIfUserIsRegistered(String email,String username,String password,Context c){
+        Boolean t = Repository.checkIfUserIsRegistered(email,username,password,c);
+        if (t == true){
+            return true; // Returns true the user is already registered
+         } else {
+            Repository.registerNewUser(email,username,password,c); // If there's no an equal username , then register it
+            return false;
         }
-        return true;
     }
 }
