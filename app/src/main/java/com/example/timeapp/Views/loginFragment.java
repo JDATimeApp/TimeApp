@@ -64,7 +64,9 @@ public class loginFragment extends Fragment {
         isAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Fragment f = new userHistoryFragment();
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_container,f);ft.commit();
             }
         });
         return root;
