@@ -1,4 +1,4 @@
-package com.example.timeapp;
+package com.example.timeapp.ViewModels;
 
 import androidx.lifecycle.ViewModel;
 

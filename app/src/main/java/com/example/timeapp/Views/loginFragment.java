@@ -1,4 +1,4 @@
-package com.example.timeapp;
+package com.example.timeapp.Views;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -18,6 +18,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.timeapp.Views.registerFragment;
+
+import com.example.timeapp.ViewModels.LoginViewModel;
+import com.example.timeapp.R;
 
 public class loginFragment extends Fragment {
 
