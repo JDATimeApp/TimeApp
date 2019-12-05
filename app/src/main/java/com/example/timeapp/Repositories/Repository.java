@@ -2,6 +2,9 @@ package com.example.timeapp.Repositories;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
+
+import androidx.lifecycle.ViewModel;
 
 import com.example.timeapp.models.Users;
 
@@ -13,6 +16,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Repository {
@@ -108,5 +112,32 @@ public class Repository {
             return false;
         }
         return output;
+    }
+
+    public static ArrayList<Users> getUsers (Context context)  {
+        ArrayList<Users> userList = new ArrayList<>();
+        File f = new File(context.getApplicationContext().getFilesDir().getPath()+FILE_NAME);
+        FileInputStream fis;
+        ObjectInputStream ois;
+        Users u;
+
+        try {
+            fis = new FileInputStream(f);
+            ois = new ObjectInputStream(fis);
+            u = (Users) ois.readObject();
+
+            while (u != null) {
+                userList.add(u);
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return userList;
     }
 }
