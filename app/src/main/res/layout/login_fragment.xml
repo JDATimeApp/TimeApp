@@ -13,12 +13,22 @@
         android:layout_marginTop="20dp"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/txtViewAdmin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginRight="20sp"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:text="@string/is_admin"/>
+
         <ImageView
             android:id="@+id/imgLogo"
             android:layout_width="170dp"
             android:layout_height="170dp"
             android:layout_gravity="center"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="42dp"
             android:contentDescription="@string/login_image_desc"
             android:src="@drawable/iconouser"
             app:layout_constraintEnd_toEndOf="parent"

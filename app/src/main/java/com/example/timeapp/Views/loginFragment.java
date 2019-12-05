@@ -2,6 +2,7 @@ package com.example.timeapp.Views;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -17,7 +18,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.timeapp.Views.registerFragment;
 
 import com.example.timeapp.ViewModels.LoginViewModel;
 import com.example.timeapp.R;
@@ -26,18 +26,17 @@ public class loginFragment extends Fragment {
 
     private LoginViewModel loginViewModel;
 
-    public static loginFragment newInstance() {
-        return new loginFragment();
-    }
-
     EditText username, password;
     TextView remember;
     Button   login;
     TextView forgot_password1, linkRegister;
-
+    TextView isAdmin;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        loginViewModel =
+                ViewModelProviders.of(this).get(LoginViewModel.class);
+
         View root = inflater.inflate(R.layout.login_fragment, container, false);
         username = root.findViewById(R.id.txtUser);
         password = root.findViewById(R.id.txtPassword);
@@ -45,7 +44,7 @@ public class loginFragment extends Fragment {
         login = root.findViewById(R.id.entrar);
         forgot_password1 = root.findViewById(R.id.forgot_password1);
         linkRegister = root.findViewById(R.id.linkRegister);
-
+        isAdmin = root.findViewById(R.id.txtViewAdmin);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +61,12 @@ public class loginFragment extends Fragment {
             }
         });
 
+        isAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         return root;
 
     }
