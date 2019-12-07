@@ -14,31 +14,22 @@
         <TextView
             android:id="@+id/txtViewUsername"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="75dp"
             android:layout_marginLeft="10dp"
+            android:gravity="center"
             android:layout_marginRight="10dp"
             android:layout_toRightOf="@+id/userProfileImg"
             android:layout_toEndOf="@+id/userProfileImg" />
 
         <TextView
-            android:id="@+id/txtViewEnterHour"
+            android:id="@+id/txtViewEmail"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="75dp"
             android:layout_below="@id/txtViewUsername"
             android:layout_marginLeft="10dp"
+            android:gravity="center"
             android:layout_marginRight="10dp"
             android:layout_toRightOf="@+id/userProfileImg"
             android:height="50dp"
             android:layout_toEndOf="@+id/userProfileImg" />
-
-        <TextView
-            android:id="@+id/txtViewLeaveHour"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@id/txtViewEnterHour"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_toRightOf="@id/userProfileImg"
-            android:layout_toEndOf="@id/userProfileImg" />
-
 </RelativeLayout>

@@ -16,26 +16,24 @@ import com.example.timeapp.models.Users;
 
 import java.util.List;
 
-public class UserRecyclerView extends RecyclerView.Adapter<UserRecyclerView.AdapterHistory> {
+public class UserRecyclerView extends RecyclerView.Adapter<UserRecyclerView.UserViewHolder> {
 
     static List<Users> usersList;
-    static NavController nv;
 
-    public UserRecyclerView(List<Users> usersList, NavController nv){
+    public UserRecyclerView(List<Users> usersList){
         this.usersList = usersList;
-        this.nv = nv;
     }
 
 
-    public static class AdapterHistory extends RecyclerView.ViewHolder {
+    public static class UserViewHolder extends RecyclerView.ViewHolder {
 
-        TextView ViewEnterHour;
-        TextView ViewLeaveHour;
+        TextView ViewUsername;
+        TextView ViewEmailAddress;
 
-        public AdapterHistory(final View user_row_history) {
+        public UserViewHolder(final View user_row_history) {
             super(user_row_history);
-            ViewEnterHour = user_row_history.findViewById(R.id.txtViewEnterHour);
-            ViewLeaveHour = user_row_history.findViewById(R.id.txtViewLeaveHour);
+            ViewUsername = user_row_history.findViewById(R.id.txtViewUsername);
+            ViewEmailAddress = user_row_history.findViewById(R.id.txtEditEmailAddress);
 
         }
     }
@@ -46,16 +44,16 @@ public class UserRecyclerView extends RecyclerView.Adapter<UserRecyclerView.Adap
     }
 
     @Override
-    public AdapterHistory onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public UserViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.user_history_row,viewGroup,false);
-        AdapterHistory ah = new AdapterHistory(v);
+        UserViewHolder ah = new UserViewHolder(v);
         return ah;
     }
 
     @Override
-    public void onBindViewHolder(AdapterHistory adapterHistory,int i){
-        adapterHistory.ViewEnterHour.setText(usersList.get(i).toString());
-        adapterHistory.ViewLeaveHour.setText(usersList.get(i).toString());
+    public void onBindViewHolder(UserViewHolder adapterHistory,int i){
+        adapterHistory.ViewUsername.setText(usersList.get(i).toString());
+        adapterHistory.ViewEmailAddress.setText(usersList.get(i).toString());
     }
 
     @Override
