@@ -124,9 +124,8 @@ public class Repository {
         try {
             fis = new FileInputStream(f);
             ois = new ObjectInputStream(fis);
-            u = (Users) ois.readObject();
-
-            while (u != null) {
+            while (true) {
+                u = (Users) ois.readObject();
                 userList.add(u);
             }
 
@@ -137,7 +136,7 @@ public class Repository {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
+        Log.d("lista","lista : "+userList);
         return userList;
     }
 }

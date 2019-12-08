@@ -14,28 +14,30 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.timeapp.R;
 import com.example.timeapp.models.Users;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserRecyclerView extends RecyclerView.Adapter<UserRecyclerView.UserViewHolder> {
 
-    static List<Users> usersList;
+    private List<Users> usersList;
 
-    public UserRecyclerView(List<Users> usersList){
+    public UserRecyclerView(ArrayList<Users> usersList){
         this.usersList = usersList;
     }
 
+    @Override
+    public UserViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.user_history_row,viewGroup,false);
+        return new UserViewHolder(v);
+    }
 
-    public static class UserViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    public void onBindViewHolder(UserViewHolder uvh,int i){
+        String username = usersList.get(i).getUsername();
+        String email = usersList.get(i).getEmailAddress();
 
-        TextView ViewUsername;
-        TextView ViewEmailAddress;
-
-        public UserViewHolder(final View user_row_history) {
-            super(user_row_history);
-            ViewUsername = user_row_history.findViewById(R.id.txtViewUsername);
-            ViewEmailAddress = user_row_history.findViewById(R.id.txtEditEmailAddress);
-
-        }
+        uvh.ViewUsername.setText(username);
+        uvh.ViewEmailAddress.setText(email);
     }
 
     @Override
@@ -43,22 +45,15 @@ public class UserRecyclerView extends RecyclerView.Adapter<UserRecyclerView.User
         return usersList.size();
     }
 
-    @Override
-    public UserViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.user_history_row,viewGroup,false);
-        UserViewHolder ah = new UserViewHolder(v);
-        return ah;
-    }
+    public class UserViewHolder extends RecyclerView.ViewHolder {
 
-    @Override
-    public void onBindViewHolder(UserViewHolder adapterHistory,int i){
-        adapterHistory.ViewUsername.setText(usersList.get(i).toString());
-        adapterHistory.ViewEmailAddress.setText(usersList.get(i).toString());
-    }
+        public TextView ViewUsername;
+        public TextView ViewEmailAddress;
 
-    @Override
-    public void onAttachedToRecyclerView(RecyclerView rv){
-        super.onAttachedToRecyclerView(rv);
+        public UserViewHolder(View user_history_row) {
+            super(user_history_row);
+            ViewUsername = user_history_row.findViewById(R.id.rv_txtViewUsername);
+            ViewEmailAddress = user_history_row.findViewById(R.id.rv_txtViewEmail);
+        }
     }
-
 }
