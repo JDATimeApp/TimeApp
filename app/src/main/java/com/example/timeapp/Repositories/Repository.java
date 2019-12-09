@@ -114,6 +114,43 @@ public class Repository {
         return output;
     }
 
+    public static boolean checkLogin(String username,String password,Context c){
+        File f = new File(c.getApplicationContext().getFilesDir().getPath()+FILE_NAME);
+        FileInputStream fis;
+        ObjectInputStream ois;
+        Users u;
+        boolean output = false;
+        try{
+            fis = new FileInputStream(f);
+            ois = new ObjectInputStream(fis);
+            u = (Users) ois.readObject();
+
+            while (u != null){ // While there is users
+                if (username.equals(u.getUsername()) && password.equals(u.getEmailAddress())){
+                    Log.d("asd","Devuelve true");
+                    ois.close();
+                    output = true;
+                    break;
+                }
+                u = (Users) ois.readObject();
+            }
+            ois.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        } catch (EOFException e){
+            e.printStackTrace();
+            return false;
+        } catch (ClassNotFoundException e){
+            e.printStackTrace();
+            return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return output;
+    }
+
     public static ArrayList<Users> getUsers (Context context)  {
         ArrayList<Users> userList = new ArrayList<>();
         File f = new File(context.getApplicationContext().getFilesDir().getPath()+FILE_NAME);

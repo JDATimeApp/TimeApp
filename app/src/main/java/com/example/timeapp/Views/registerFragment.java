@@ -18,7 +18,7 @@ import com.example.timeapp.ViewModels.registerViewModel;
 
 public class registerFragment extends Fragment {
 
-    private com.example.timeapp.ViewModels.registerViewModel registerViewModel;
+    private registerViewModel registerViewModel;
 
     private EditText editTxtEmail;
     private EditText editTxtUsername;

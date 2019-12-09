@@ -11,12 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.timeapp.ViewModels.LoginViewModel;
@@ -49,7 +51,14 @@ public class loginFragment extends Fragment {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //login.isLongClickable(username.getText().toString(), password.getText().toString());
+               Boolean t =loginViewModel.checkLogin(username.getText().toString(),
+                       password.getText().toString(),
+                       getContext());
+               if (t == true){
+                   Toast.makeText(getContext(),"Welcome to the app",Toast.LENGTH_SHORT).show();
+               } else {
+                   Toast.makeText(getContext(),"You are not registered!",Toast.LENGTH_SHORT).show();
+               }
             }
         });
         linkRegister.setOnClickListener(new View.OnClickListener() {
