@@ -15,8 +15,9 @@
 
         <ImageView
             android:id="@+id/ImgViewLogo"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
+            android:src="@drawable/iconouser"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_gravity="center"
             android:contentDescription="@string/login_image_desc"
             />
