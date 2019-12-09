@@ -89,7 +89,7 @@ public class Repository {
             u = (Users) ois.readObject();
 
             while (u != null){ // While there is users
-                if (username.equals(u.getUsername())){
+                if (username.equals(u.getUsername()) || email.equals(u.getEmailAddress())){
                     Log.d("asd","Devuelve true");
                     ois.close();
                     output = true;
