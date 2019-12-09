@@ -66,7 +66,7 @@ public class loginFragment extends Fragment {
             public void onClick(View v) {
                Fragment fm = new registerFragment();
                FragmentTransaction transactionuno = getActivity().getSupportFragmentManager().beginTransaction();
-               transactionuno.replace(R.id.fragment_container,fm);transactionuno.commit();
+               transactionuno.replace(R.id.fragment_container,fm);transactionuno.addToBackStack(null).commit();
             }
         });
 
@@ -75,7 +75,7 @@ public class loginFragment extends Fragment {
             public void onClick(View v) {
                 Fragment f = new userHistoryFragment();
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.fragment_container,f);ft.commit();
+                ft.replace(R.id.fragment_container,f);ft.addToBackStack(null).commit();
             }
         });
         return root;
