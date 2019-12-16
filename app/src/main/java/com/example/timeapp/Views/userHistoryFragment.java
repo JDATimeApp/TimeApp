@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,6 +42,8 @@ public class userHistoryFragment extends Fragment {
         //Set the adapter
         UserRecyclerView urv = new UserRecyclerView(usersList);
         rv.setAdapter(urv);
+
+        rv.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL)); // Adding vertical line to RV
         return root;
     }
 }
