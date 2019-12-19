@@ -4,7 +4,9 @@ public class DBDesign {
 
     private DBDesign(){}
 
-    public static final String DATABASE_NAME = "TimeApp.db";
+    public static final String DROP_TABLE = "DROP TABLE IF EXISTS "+UserDesign.USER_TABLE;
+    public static final String DROP_TABLE_ENTRY = "DROP TABLE IF EXISTS "+EntryDesign.ENTRY_TABLE;
+    public static final String DROP_TABLE_SHEDULE = "DROP TABLE IF EXISTS "+ScheduleDesign.SCHEDULE_TABLE;
 
     public static final String USER_CREATE_TABLE = "CREATE TABLE "+UserDesign.USER_TABLE+" ("+
             UserDesign.USER_COLUMN1+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ,"+

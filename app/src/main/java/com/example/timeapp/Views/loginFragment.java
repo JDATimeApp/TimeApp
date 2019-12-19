@@ -64,6 +64,7 @@ public class loginFragment extends Fragment {
                }
             }
         });
+        
         linkRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
