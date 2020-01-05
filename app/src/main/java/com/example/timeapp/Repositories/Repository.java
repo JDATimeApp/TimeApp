@@ -48,6 +48,10 @@ public class Repository {
 
     // Here is where we have to put the methods
 
+    public static void closeDatabase(){
+        db.close();
+    }
+
     public static void registerNewUser(String email, String username, String passwd, Context context) {
         File f = new File(context.getApplicationContext().getFilesDir().getPath()+FILE_NAME);
         FileOutputStream archivo;
