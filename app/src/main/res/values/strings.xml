@@ -16,4 +16,6 @@
     <string name="img_logo">User logo image</string>
     <string name="user_profile">User profile</string>
     <string name="is_admin">Im admin</string>
+    <string name="sign_btn">Sign</string>
+    <string name="comment_txt">Enter any comment</string>
 </resources>
