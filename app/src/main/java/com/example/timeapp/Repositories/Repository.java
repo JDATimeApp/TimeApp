@@ -1,11 +1,13 @@
 package com.example.timeapp.Repositories;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.View;
 
 import androidx.lifecycle.ViewModel;
 
+import com.example.timeapp.Database.DDBB;
 import com.example.timeapp.models.Users;
 
 import java.io.EOFException;
@@ -25,13 +27,15 @@ public class Repository {
 
     //Creating a singleton for only one instance
     private static Repository srepository;
-
+    public static SQLiteDatabase db;
     private static List<Users> userList;
 
     private static final String FILE_NAME = "/users.dat";
 
     private Repository(Context context) {
         this.context = context;
+        DDBB database = new DDBB(context);
+        db = database.getWritableDatabase();
     }
 
     public static Repository get(Context context) {
