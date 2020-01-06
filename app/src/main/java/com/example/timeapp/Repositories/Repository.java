@@ -1,5 +1,6 @@
 package com.example.timeapp.Repositories;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -7,6 +8,7 @@ import android.view.View;
 
 import androidx.lifecycle.ViewModel;
 
+import com.example.timeapp.Database.DBDesign;
 import com.example.timeapp.Database.DDBB;
 import com.example.timeapp.models.Users;
 
@@ -34,8 +36,8 @@ public class Repository {
 
     private Repository(Context context) {
         this.context = context;
-        DDBB database = new DDBB(context);
-        db = database.getWritableDatabase();
+        DDBB ddbb = new DDBB(context);
+        db = ddbb.getWritableDatabase();
     }
 
     public static Repository get(Context context) {
@@ -84,6 +86,8 @@ public class Repository {
             e.printStackTrace();
         }
     }
+
+
 
     public static boolean checkIfUserIsRegistered(String email,String username,String password,Context context){
         File f = new File(context.getApplicationContext().getFilesDir().getPath()+FILE_NAME);

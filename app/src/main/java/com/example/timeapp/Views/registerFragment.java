@@ -49,7 +49,6 @@ public class registerFragment extends Fragment {
                     Toast.makeText(getContext(),"That username is already registered!",Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getContext(),"Thank you for registering "+editTxtEmail.getText().toString(),Toast.LENGTH_SHORT).show();
-
                 }
                 Log.d("Click","clickado");
                 // fragment_container is where the fragment is going to  be drawn
