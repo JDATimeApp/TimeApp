@@ -2,6 +2,7 @@ package com.example.timeapp.Repositories;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.View;
@@ -25,7 +26,7 @@ import java.util.List;
 
 public class Repository {
 
-    private Context context;
+    private static Context context;
 
     //Creating a singleton for only one instance
     private static Repository srepository;
@@ -89,41 +90,29 @@ public class Repository {
 
 
 
-    public static boolean checkIfUserIsRegistered(String email,String username,String password,Context context){
-        File f = new File(context.getApplicationContext().getFilesDir().getPath()+FILE_NAME);
-        FileInputStream fis;
-        ObjectInputStream ois;
-        Users u;
-        boolean output = false;
-        try{
-            fis = new FileInputStream(f);
-            ois = new ObjectInputStream(fis);
-            u = (Users) ois.readObject();
+    public static boolean checkIfUserIsRegistered(String email,String username,String password,Context c){
+        DDBB db = new DDBB(c);
+        SQLiteDatabase sql = db.getReadableDatabase();
 
-            while (u != null){ // While there is users
-                if (username.equals(u.getUsername()) || email.equals(u.getEmailAddress())){
-                    Log.d("asd","Devuelve true");
-                    ois.close();
-                    output = true;
-                    break;
-                }
-                u = (Users) ois.readObject();
-            }
-            ois.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return false;
-        } catch (EOFException e){
-            e.printStackTrace();
-            return false;
-        } catch (ClassNotFoundException e){
-            e.printStackTrace();
-            return false;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
+        String [] columns = {"*"}; // Row to find
+        String select = DBDesign.UserDesign.USER_COLUMN2+" = ? and "+DBDesign.UserDesign.USER_COLUMN4+" = ?";
+        String [] selectArgs  = {username,email};
+
+        Cursor cu = sql.query(DBDesign.UserDesign.USER_TABLE,
+                columns,
+                select,
+                selectArgs,
+                null,
+                null,
+                null);
+
+        int result = cu.getCount();
+        cu.close();
+        if (result > 0){
+            return true;
         }
-        return output;
+        return false;
+
     }
 
     public static boolean checkLogin(String username,String password,Context c){

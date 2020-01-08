@@ -52,7 +52,7 @@ public class loginFragment extends Fragment {
                        password.getText().toString(),
                        getContext());
                if (t == true){
-                   Fragment f = new WebFragment();
+                   Fragment f = new signFragment();
                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                    ft.replace(R.id.fragment_container,f).commit();
                    Toast.makeText(getContext(),"Welcome to the app",Toast.LENGTH_SHORT).show();

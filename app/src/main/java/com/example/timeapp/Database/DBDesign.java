@@ -10,7 +10,7 @@ public class DBDesign {
 
     public static final String USER_CREATE_TABLE = "CREATE TABLE "+UserDesign.USER_TABLE+"("+
             UserDesign.USER_COLUMN1+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"+
-            UserDesign.USER_COLUMN2+" VARCHAR(20) NOT NULL,"+
+            UserDesign.USER_COLUMN2+" VARCHAR(20) UNIQUE NOT NULL,"+
             UserDesign.USER_COLUMN3+" VARCHAR(20) NOT NULL,"+
             UserDesign.USER_COLUMN4+" VARCHAR(40) NOT NULL)";
 
