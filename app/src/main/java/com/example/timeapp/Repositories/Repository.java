@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Repository {
@@ -56,36 +57,16 @@ public class Repository {
     }
 
     public static void registerNewUser(String email, String username, String passwd, Context context) {
-        File f = new File(context.getApplicationContext().getFilesDir().getPath()+FILE_NAME);
-        FileOutputStream archivo;
-        ObjectOutputStream oos;
-        Users u;
-        try {
-            if (!f.exists()){
-                archivo = new FileOutputStream(f);
-                oos = new ObjectOutputStream(archivo);
-                Log.d("asd","Entering for the first time");
-                u = new Users(email,username,passwd);
-                oos.writeObject(u);
-                oos.flush();
-                oos.close();
-            } else {
-                Log.d("asd","File already exists");
-                oos = new ObjectOutputStream(new FileOutputStream(f,true)){
-                  protected void writeStreamHeader() throws IOException{
-                      reset();
-                  }
-                };
-                u = new Users(email,username,passwd);
-                oos.writeObject(u);
-                oos.flush();
-                oos.close();
-            }
-        } catch (FileNotFoundException e){
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        DDBB db = new DDBB(context);
+        SQLiteDatabase sql = db.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        sql.execSQL(DBDesign.ENTRY_CREATE_TABLE);
+        values.put("Column_One",username);
+        values.put("Column_Two",passwd);
+        values.put("Column_Three",email);
+        sql.insert(DBDesign.UserDesign.USER_TABLE, null, values);
+
     }
 
 
