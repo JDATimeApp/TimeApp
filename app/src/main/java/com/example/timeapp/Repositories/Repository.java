@@ -96,7 +96,7 @@ public class Repository {
     }
 
     public static boolean checkLogin(String username,String password,Context c) {
-        DDBB db = new DDBB(context);
+        DDBB db = new DDBB(c);
         SQLiteDatabase sql = db.getReadableDatabase();
 
         String[] columns = {"*"}; // Row to find
@@ -111,7 +111,7 @@ public class Repository {
                 null,
                 null);
         int result = cu.getCount();
-        if (result < 0) {
+        if (result > 0) {
             return true;
         }
         return false;
