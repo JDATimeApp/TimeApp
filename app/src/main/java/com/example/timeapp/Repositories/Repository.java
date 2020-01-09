@@ -61,10 +61,9 @@ public class Repository {
         SQLiteDatabase sql = db.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        sql.execSQL(DBDesign.ENTRY_CREATE_TABLE);
-        values.put("Column_One",username);
-        values.put("Column_Two",passwd);
-        values.put("Column_Three",email);
+        values.put(DBDesign.UserDesign.USER_COLUMN2,username);
+        values.put(DBDesign.UserDesign.USER_COLUMN3,passwd);
+        values.put(DBDesign.UserDesign.USER_COLUMN4,email);
         sql.insert(DBDesign.UserDesign.USER_TABLE, null, values);
 
     }
