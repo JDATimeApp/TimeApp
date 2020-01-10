@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DDBB extends SQLiteOpenHelper {
-
     private static final String DATABASE_NAME = "timeapp.db";
     private static final int DB_VERSION = 1;
     public DDBB(Context c){

@@ -119,27 +119,30 @@ public class Repository {
 
     public static ArrayList<Users> getUsers (Context context)  {
         ArrayList<Users> userList = new ArrayList<>();
-        File f = new File(context.getApplicationContext().getFilesDir().getPath()+FILE_NAME);
-        FileInputStream fis;
-        ObjectInputStream ois;
-        Users u;
+        String [] columns = {"*"};
 
-        try {
-            fis = new FileInputStream(f);
-            ois = new ObjectInputStream(fis);
-            while (true) {
-                u = (Users) ois.readObject();
-                userList.add(u);
-            }
+        DDBB ddbb = new DDBB(context);
+        SQLiteDatabase sql = ddbb.getReadableDatabase();
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        Log.d("lista","lista : "+userList);
+       Cursor c = sql.query(DBDesign.UserDesign.USER_TABLE,
+               columns,
+               null,
+               null,
+               null,
+               null,
+               null);
+
+       if (c.moveToFirst()){
+           do{
+               // Getting the info from every row
+               String username = c.getString(1);
+               String password = c.getString(2);
+               String email = c.getString(3);
+
+               userList.add(new Users(email,username,password));
+           } while (c.moveToNext());
+       }
+        c.close();
         return userList;
     }
 }
