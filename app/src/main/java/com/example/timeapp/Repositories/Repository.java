@@ -21,9 +21,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class Repository {
 
@@ -144,5 +147,23 @@ public class Repository {
        }
         c.close();
         return userList;
+    }
+
+    public String getActualDateTime(){
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        df.setTimeZone(TimeZone.getTimeZone("GMT +1"));
+        Date d = new Date();
+        String date = df.format(d);
+        return date;
+    }
+
+    public String getActualHour(String actualDateTime){
+        String [] d = actualDateTime.split(" ");
+        return d[1];
+    }
+
+    public String getActualDay(String actualDateTime){
+        String [] d = actualDateTime.split(" ");
+        return d[0];
     }
 }
