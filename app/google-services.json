@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "743443792778",
+    "firebase_url": "https://timeapp-73642.firebaseio.com",
+    "project_id": "timeapp-73642",
+    "storage_bucket": "timeapp-73642.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:743443792778:android:698e8bde6dd933c806be73",
+        "android_client_info": {
+          "package_name": "com.example.timeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "743443792778-2a9fdaqatlfcb4glm13svl7ve0dkbjie.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.timeapp",
+            "certificate_hash": "4c38a63ca5b3d79547158da3078a66eb2e076ddf"
+          }
+        },
+        {
+          "client_id": "743443792778-8upgsgf9jb4bcvur2ga3qdrqpr6mv2uv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHU3ZtkbVqZX7PMmNrAnFQzmaHOW47CSk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "743443792778-8upgsgf9jb4bcvur2ga3qdrqpr6mv2uv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

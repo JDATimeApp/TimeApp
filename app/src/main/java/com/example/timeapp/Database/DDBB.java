@@ -1,6 +1,5 @@
 package com.example.timeapp.Database;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -17,7 +16,6 @@ public class DDBB extends SQLiteOpenHelper {
         db.execSQL(DBDesign.USER_CREATE_TABLE);
         db.execSQL(DBDesign.ENTRY_CREATE_TABLE);
         db.execSQL(DBDesign.SCHEDULE_CREATE_TABLE);
-
     }
 
     @Override
