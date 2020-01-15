@@ -4,10 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-import android.view.View;
-
-import androidx.lifecycle.ViewModel;
 
 import com.example.timeapp.Database.DBDesign;
 import com.example.timeapp.Database.DDBB;
@@ -108,6 +104,28 @@ public class Repository {
         }
         sql.close();
         return false;
+    }
+
+    public static int getUserId(String username){
+        DDBB ddbb = new DDBB(context);
+        SQLiteDatabase sql = ddbb.getReadableDatabase();
+
+        String [] columns = {DBDesign.UserDesign.USER_COLUMN1};
+        String select = DBDesign.UserDesign.USER_COLUMN2 + "= ?";
+        String [] selectArgs = {username};
+
+        Cursor cu = sql.query(DBDesign.UserDesign.USER_TABLE,
+                columns,
+                select,
+                selectArgs,
+                null,
+                null,
+                null);
+        int id = cu.getInt(0);
+        cu.close();
+        sql.close();
+
+        return id;
     }
 
     public static ArrayList<Users> getUsers (Context context)  {
