@@ -34,9 +34,9 @@ public class WebViewModel extends ViewModel {
             url = new URL(web);
             connection = (HttpURLConnection) url.openConnection();
             InputStream inputStream = connection.getInputStream();
-            //BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            int data = inputStream.read();
 
+            int data = inputStream.read();
+            // Getting the data from the WebPage
             while (data != -1){
                 result += (char) data;
                 data = inputStream.read();
@@ -47,7 +47,6 @@ public class WebViewModel extends ViewModel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         mWeb.postValue(result);
     }
 }

@@ -34,6 +34,7 @@ public class WebFragment extends Fragment {
         webView = root.findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
 
+        // Creating the thread to print the web
         MyThread thread= new MyThread();
         thread.execute(WEB_URL);
 
@@ -48,6 +49,7 @@ public class WebFragment extends Fragment {
 
     public class MyThread extends AsyncTask<String,Void,String> {
 
+        // In background we download the data from the page
         @Override
         protected String doInBackground(String... strings) {
             webViewModel.downloadURL(strings[0]);
