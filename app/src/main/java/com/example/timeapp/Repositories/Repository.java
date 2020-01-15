@@ -13,19 +13,11 @@ import com.example.timeapp.Database.DBDesign;
 import com.example.timeapp.Database.DDBB;
 import com.example.timeapp.models.Users;
 
-import java.io.EOFException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.TimeZone;
 
 public class Repository {
@@ -35,9 +27,6 @@ public class Repository {
     //Creating a singleton for only one instance
     private static Repository srepository;
     public static SQLiteDatabase db;
-    private static List<Users> userList;
-
-    private static final String FILE_NAME = "/users.dat";
 
     private Repository(Context context) {
         this.context = context;
@@ -52,7 +41,6 @@ public class Repository {
         }
         return srepository;
     }
-
     // Here is where we have to put the methods
 
     public static void closeDatabase(){
@@ -68,7 +56,7 @@ public class Repository {
         values.put(DBDesign.UserDesign.USER_COLUMN3,passwd);
         values.put(DBDesign.UserDesign.USER_COLUMN4,email);
         sql.insert(DBDesign.UserDesign.USER_TABLE, null, values);
-
+        sql.close();
     }
 
 
@@ -94,6 +82,7 @@ public class Repository {
         if (result > 0){
             return true;
         }
+        sql.close();
         return false;
 
     }
@@ -117,6 +106,7 @@ public class Repository {
         if (result > 0) {
             return true;
         }
+        sql.close();
         return false;
     }
 
