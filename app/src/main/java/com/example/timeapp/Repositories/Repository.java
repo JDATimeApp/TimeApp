@@ -107,7 +107,7 @@ public class Repository {
         return false;
     }
 
-    public static int getUserId(String username){
+    public static String getUserId(String username){
         DDBB ddbb = new DDBB(context);
         SQLiteDatabase sql = ddbb.getReadableDatabase();
 
@@ -122,7 +122,7 @@ public class Repository {
                 null,
                 null,
                 null);
-        int id = cu.getInt(0);
+        String id = String.valueOf(cu.getInt(0));
         cu.close();
         sql.close();
 
@@ -158,7 +158,33 @@ public class Repository {
         return userList;
     }
 
-    public String getActualDateTime(){
+    public static void setEntryTime(String userId){
+        DDBB ddbb = new DDBB(context);
+        SQLiteDatabase sql = ddbb.getReadableDatabase();
+
+        String [] columns = {"*"};
+        String select = DBDesign.UserDesign.USER_COLUMN1 + "=? and"+DBDesign.EntryDesign.ENTRY_COLUMN1+ "=?";
+        String [] selectArgs = {userId,getActualDay(getActualDateTime())};
+
+        Cursor cu = sql.query(DBDesign.UserDesign.USER_TABLE,
+                columns,
+                select,
+                selectArgs,
+                null,
+                null,
+                null);
+        int total = cu.getCount();
+        if (total > 0){
+            Log.i("Entry","Found an entry"+cu.getString(0)+" "+cu.getString(1)+
+                    ""+cu.getString(2));
+        } else {
+            Log.i("Entry","No entry .. inserting new");
+        }
+        cu.close();
+        sql.close();
+    }
+
+    public static String getActualDateTime(){
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         df.setTimeZone(TimeZone.getTimeZone("GMT +1"));
         Date d = new Date();
@@ -166,12 +192,12 @@ public class Repository {
         return date;
     }
 
-    public String getActualHour(String actualDateTime){
+    public static String getActualHour(String actualDateTime){
         String [] d = actualDateTime.split(" ");
         return d[1];
     }
 
-    public String getActualDay(String actualDateTime){
+    public static String getActualDay(String actualDateTime){
         String [] d = actualDateTime.split(" ");
         return d[0];
     }

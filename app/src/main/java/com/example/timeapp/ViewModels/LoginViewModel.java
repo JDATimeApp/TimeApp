@@ -17,7 +17,7 @@ public class LoginViewModel extends ViewModel {
         }
     }
 
-    public static int getUserId(String username){
+    public static String getUserId(String username){
         return Repository.getUserId(username);
     }
 }

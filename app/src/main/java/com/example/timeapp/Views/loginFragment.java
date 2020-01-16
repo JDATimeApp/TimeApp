@@ -60,7 +60,7 @@ public class loginFragment extends Fragment {
                    //Creating the file for saving session user data when is validated
                    SharedPreferences pref = getContext().getSharedPreferences("userInfo",0);
                    SharedPreferences.Editor ed = pref.edit();
-                   ed.putInt("userId",loginViewModel.getUserId(us)).commit(); // Storing data and committing it
+                   ed.putString("userId",loginViewModel.getUserId(us)).commit(); // Storing data and committing it
                    Toast.makeText(getContext(),"Welcome to the app",Toast.LENGTH_SHORT).show();
                } else {
                    Toast.makeText(getContext(),"You are not registered!",Toast.LENGTH_SHORT).show();
