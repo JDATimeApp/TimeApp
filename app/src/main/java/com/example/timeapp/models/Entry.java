@@ -5,9 +5,9 @@ public class Entry {
     String entryDate;
     String entryTime;
     String leaveTime;
-    int workerId;
+    String workerId;
 
-    public Entry(int workerId, String entryDate,String entryTime, String leaveTime) {
+    public Entry(String workerId, String entryDate,String entryTime, String leaveTime) {
         this.workerId = workerId;
         this.entryDate = entryDate;
         this.entryTime = entryTime;
@@ -38,11 +38,11 @@ public class Entry {
         this.leaveTime = leaveTime;
     }
 
-    public int getWorkerId() {
+    public String getWorkerId() {
         return workerId;
     }
 
-    public void setWorkerId(int workerId) {
+    public void setWorkerId(String workerId) {
         this.workerId = workerId;
     }
 }

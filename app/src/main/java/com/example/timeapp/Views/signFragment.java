@@ -1,9 +1,11 @@
 package com.example.timeapp.Views;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +24,14 @@ public class signFragment extends Fragment {
         signViewModel =
                 ViewModelProviders.of(this).get(signViewModel.class);
         View root = inflater.inflate(R.layout.sign_fragment, container, false);
+        //Getting the user ID from sharedPreferences
+        SharedPreferences pref = getContext().getSharedPreferences("userInfo",0);
+        pref.getInt("userId",0);
+
+        Button entryBtn,leaveBtn;
+        entryBtn = root.findViewById(R.id.entryBtn);
+        leaveBtn = root.findViewById(R.id.leaveBtn);
+
         return root;
     }
 }

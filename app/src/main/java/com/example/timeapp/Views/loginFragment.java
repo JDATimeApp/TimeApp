@@ -3,6 +3,7 @@ package com.example.timeapp.Views;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -48,6 +49,7 @@ public class loginFragment extends Fragment {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String us = username.getText().toString();
                Boolean t =loginViewModel.checkLogin(username.getText().toString(),
                        password.getText().toString(),
                        getContext());
@@ -55,6 +57,10 @@ public class loginFragment extends Fragment {
                    Fragment f = new signFragment();
                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                    ft.replace(R.id.fragment_container,f).commit();
+                   //Creating the file for saving session user data when is validated
+                   SharedPreferences pref = getContext().getSharedPreferences("userInfo",0);
+                   SharedPreferences.Editor ed = pref.edit();
+                   ed.putInt("userId",loginViewModel.getUserId(us)).commit(); // Storing data and committing it
                    Toast.makeText(getContext(),"Welcome to the app",Toast.LENGTH_SHORT).show();
                } else {
                    Toast.makeText(getContext(),"You are not registered!",Toast.LENGTH_SHORT).show();

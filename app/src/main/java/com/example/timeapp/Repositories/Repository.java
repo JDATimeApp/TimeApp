@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.example.timeapp.Database.DBDesign;
 import com.example.timeapp.Database.DDBB;
@@ -90,7 +92,6 @@ public class Repository {
         String[] columns = {"*"}; // Row to find
         String select = DBDesign.UserDesign.USER_COLUMN2 + " = ? and " + DBDesign.UserDesign.USER_COLUMN4 + " = ?";
         String[] selectArgs = {username, password};
-
         Cursor cu = sql.query(DBDesign.UserDesign.USER_TABLE,
                 columns,
                 select,
