@@ -54,13 +54,14 @@ public class loginFragment extends Fragment {
                        password.getText().toString(),
                        getContext());
                if (t == true){
+                   SharedPreferences pref = getContext().getSharedPreferences("userInfo",0);
+                   SharedPreferences.Editor ed = pref.edit();
+                   String userId = loginViewModel.getUserId(us,getContext());
+                   ed.putString("userId",userId).apply();
                    Fragment f = new signFragment();
                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                    ft.replace(R.id.fragment_container,f).commit();
                    //Creating the file for saving session user data when is validated
-                   SharedPreferences pref = getContext().getSharedPreferences("userInfo",0);
-                   SharedPreferences.Editor ed = pref.edit();
-                   ed.putString("userId",loginViewModel.getUserId(us)).commit(); // Storing data and committing it
                    Toast.makeText(getContext(),"Welcome to the app",Toast.LENGTH_SHORT).show();
                } else {
                    Toast.makeText(getContext(),"You are not registered!",Toast.LENGTH_SHORT).show();

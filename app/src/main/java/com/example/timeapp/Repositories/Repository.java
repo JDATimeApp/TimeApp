@@ -107,8 +107,8 @@ public class Repository {
         return false;
     }
 
-    public static String getUserId(String username){
-        DDBB ddbb = new DDBB(context);
+    public static String getUserId(String username, Context c){
+        DDBB ddbb = new DDBB(c);
         SQLiteDatabase sql = ddbb.getReadableDatabase();
 
         String [] columns = {DBDesign.UserDesign.USER_COLUMN1};
@@ -122,7 +122,11 @@ public class Repository {
                 null,
                 null,
                 null);
-        String id = String.valueOf(cu.getInt(0));
+        String id = "";
+        if (cu.moveToFirst()){
+            id = String.valueOf(cu.getInt(0));
+
+        }
         cu.close();
         sql.close();
 
