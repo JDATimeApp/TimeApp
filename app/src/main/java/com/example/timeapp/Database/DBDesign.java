@@ -16,9 +16,9 @@ public class DBDesign {
 
     public static final String ENTRY_CREATE_TABLE = "CREATE TABLE "+EntryDesign.ENTRY_TABLE+"("+
             UserDesign.USER_COLUMN1+" INTEGER,"+
-            EntryDesign.ENTRY_COLUMN1+" DATE NOT NULL,"+
-            EntryDesign.ENTRY_COLUMN2+" TIME NOT NULL,"+
-            EntryDesign.ENTRY_COLUMN3+" TIME,"+
+            EntryDesign.ENTRY_COLUMN1+" TEXT NOT NULL,"+
+            EntryDesign.ENTRY_COLUMN2+" TEXT NOT NULL,"+
+            EntryDesign.ENTRY_COLUMN3+" TEXT ,"+
             EntryDesign.ENTRY_COLUMN4+" TEXT,"+
             "FOREIGN KEY ("+UserDesign.USER_COLUMN1+")REFERENCES "+UserDesign.USER_TABLE+")";
 

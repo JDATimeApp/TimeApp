@@ -7,8 +7,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+
 import com.example.timeapp.Database.DBDesign;
 import com.example.timeapp.Database.DDBB;
+import com.example.timeapp.models.Entry;
 import com.example.timeapp.models.Users;
 
 
@@ -159,18 +162,19 @@ public class Repository {
            } while (c.moveToNext());
        }
         c.close();
+       sql.close();
         return userList;
     }
 
-    public static void setEntryTime(String userId){
-        DDBB ddbb = new DDBB(context);
-        SQLiteDatabase sql = ddbb.getReadableDatabase();
+    public static void setEntryTime(String userId, Context c){
+        DDBB ddbb = new DDBB(c);
+        SQLiteDatabase sql = ddbb.getWritableDatabase();
 
         String [] columns = {"*"};
-        String select = DBDesign.UserDesign.USER_COLUMN1 + "=? and"+DBDesign.EntryDesign.ENTRY_COLUMN1+ "=?";
+        String select = DBDesign.UserDesign.USER_COLUMN1 + "=? and "+DBDesign.EntryDesign.ENTRY_COLUMN1+ "=?";
         String [] selectArgs = {userId,getActualDay(getActualDateTime())};
 
-        Cursor cu = sql.query(DBDesign.UserDesign.USER_TABLE,
+        Cursor cu = sql.query(DBDesign.EntryDesign.ENTRY_TABLE,
                 columns,
                 select,
                 selectArgs,
@@ -178,13 +182,21 @@ public class Repository {
                 null,
                 null);
         int total = cu.getCount();
-        if (total > 0){
-            Log.i("Entry","Found an entry"+cu.getString(0)+" "+cu.getString(1)+
-                    ""+cu.getString(2));
-        } else {
-            Log.i("Entry","No entry .. inserting new");
-        }
         cu.close();
+        if (total > 0){
+            Log.i("Entry","Found an entry");
+            Toast.makeText(c,"Already checked in today!",Toast.LENGTH_SHORT).show();
+        } else {
+            ContentValues values = new ContentValues();
+            values.put(DBDesign.UserDesign.USER_COLUMN1,userId);
+            values.put(DBDesign.EntryDesign.ENTRY_COLUMN1,getActualDay(getActualDateTime()));
+            values.put(DBDesign.EntryDesign.ENTRY_COLUMN2,getActualHour(getActualDateTime()));
+            values.put(DBDesign.EntryDesign.ENTRY_COLUMN3,"");
+            values.put(DBDesign.EntryDesign.ENTRY_COLUMN4,"");
+            sql.insert(DBDesign.EntryDesign.ENTRY_TABLE,null,values);
+            Log.i("Entry","No entry .. inserting new");
+            Toast.makeText(c,"Thank you for checking in!",Toast.LENGTH_SHORT).show();
+        }
         sql.close();
     }
 

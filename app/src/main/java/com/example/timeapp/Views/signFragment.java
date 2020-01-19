@@ -26,7 +26,7 @@ public class signFragment extends Fragment {
         View root = inflater.inflate(R.layout.sign_fragment, container, false);
         //Getting the user ID from sharedPreferences
         SharedPreferences pref = getContext().getSharedPreferences("userInfo",0);
-        pref.getString("userId","");
+        final String userId  = pref.getString("userId","");
 
         Button entryBtn,leaveBtn;
         entryBtn = root.findViewById(R.id.entryBtn);
@@ -35,7 +35,7 @@ public class signFragment extends Fragment {
         entryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                signViewModel.setEntryTime(userId,getContext());
             }
         });
 
