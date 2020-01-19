@@ -10,4 +10,8 @@ public class signViewModel extends ViewModel {
     public static void setEntryTime(String userId, Context c){
         Repository.setEntryTime(userId,c);
     }
+
+    public static void setLeaveTime(String userId,Context c){
+        Repository.setLeaveTime(userId,c);
+    }
 }

@@ -81,6 +81,7 @@ public class Repository {
         int result = cu.getCount();
         cu.close();
         if (result > 0){
+            sql.close();
             return true;
         }
         sql.close();
@@ -104,6 +105,7 @@ public class Repository {
                 null);
         int result = cu.getCount();
         if (result > 0) {
+            sql.close();
             return true;
         }
         sql.close();
@@ -196,6 +198,37 @@ public class Repository {
             sql.insert(DBDesign.EntryDesign.ENTRY_TABLE,null,values);
             Log.i("Entry","No entry .. inserting new");
             Toast.makeText(c,"Thank you for checking in!",Toast.LENGTH_SHORT).show();
+        }
+        sql.close();
+    }
+
+    public static void setLeaveTime(String userId,Context c){
+        DDBB ddbb = new DDBB(c);
+        SQLiteDatabase sql = ddbb.getWritableDatabase();
+
+        String [] columns = {"*"};
+        String select = DBDesign.UserDesign.USER_COLUMN1+" = ? and "+ DBDesign.EntryDesign.ENTRY_COLUMN3+" = ? and "+ DBDesign.EntryDesign.ENTRY_COLUMN1+" = ?";
+        String [] selectArgs = {userId,"",getActualDay(getActualDateTime())};
+
+        ContentValues cv = new ContentValues();
+        cv.put(DBDesign.EntryDesign.ENTRY_COLUMN3,getActualHour(getActualDateTime()));
+
+        Cursor cu = sql.query(DBDesign.EntryDesign.ENTRY_TABLE,
+                columns,
+                select,
+                selectArgs,
+                null,
+                null,
+                null);
+        int total = cu.getCount();
+        cu.close();
+        if (total > 0) {
+            sql.update(DBDesign.EntryDesign.ENTRY_TABLE,cv,select,selectArgs);
+            Log.i("Entry","Registering leaving time");
+            Toast.makeText(c,"Leave registered , see you soon!",Toast.LENGTH_SHORT).show();
+        } else {
+            Log.i("Entry","Something went wrong inserting leave time");
+            Toast.makeText(c,"Oops.. something went wrong!",Toast.LENGTH_SHORT).show();
         }
         sql.close();
     }

@@ -42,7 +42,7 @@ public class signFragment extends Fragment {
         leaveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                signViewModel.setLeaveTime(userId,getContext());
             }
         });
         return root;
