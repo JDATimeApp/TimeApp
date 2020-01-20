@@ -20,4 +20,5 @@
     <string name="leave_btn">Leave</string>
     <string name="comment_txt">Enter any comment</string>
     <string name="history">History</string>
+    <string name="entry_history">Entry history</string>
 </resources>
