@@ -7,11 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 
 import com.example.timeapp.Database.DBDesign;
 import com.example.timeapp.Database.DDBB;
-import com.example.timeapp.models.Entry;
 import com.example.timeapp.models.Users;
 
 
