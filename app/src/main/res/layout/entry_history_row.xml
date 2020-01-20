@@ -4,32 +4,33 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/entryDate"
+        android:id="@+id/txtentryDate"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="5dp"
+        android:gravity="center"
         android:contentDescription="@string/user_profile" />
 
     <TextView
-        android:id="@+id/entryTime"
+        android:id="@+id/txtentryTime"
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:gravity="center"
         android:layout_marginRight="10dp"
-        android:layout_toRightOf="@+id/entryDate"
-        android:layout_toEndOf="@+id/entryDate" />
+        android:layout_toRightOf="@+id/txtentryDate"
+        android:layout_toEndOf="@+id/txtentryDate" />
 
     <TextView
         android:id="@+id/leaveTime"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:layout_below="@id/entryTime"
+        android:layout_below="@id/txtentryTime"
         android:layout_marginLeft="10dp"
         android:gravity="center"
         android:layout_marginRight="10dp"
-        android:layout_toRightOf="@+id/entryDate"
+        android:layout_toRightOf="@+id/txtentryDate"
         android:height="50dp"
-        android:layout_toEndOf="@+id/entryDate" />
+        android:layout_toEndOf="@+id/txtentryDate" />
 </RelativeLayout>
