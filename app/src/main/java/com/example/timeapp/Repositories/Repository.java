@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.timeapp.Database.DBDesign;
 import com.example.timeapp.Database.DDBB;
+import com.example.timeapp.models.Entry;
 import com.example.timeapp.models.Users;
 
 
@@ -229,6 +230,39 @@ public class Repository {
             Toast.makeText(c,"Oops.. something went wrong!",Toast.LENGTH_SHORT).show();
         }
         sql.close();
+    }
+
+    public static ArrayList<Entry> getUserEntries(String userId,Context c){
+        DDBB ddbb = new DDBB(c);
+        SQLiteDatabase sql= ddbb.getReadableDatabase();
+
+        String [] columns = {"*"};
+        String select = DBDesign.UserDesign.USER_COLUMN1+ "= ?";
+        String [] selectArgs = {userId};
+
+        ArrayList<Entry> entryList = new ArrayList<>();
+        Cursor cu = sql.query(DBDesign.EntryDesign.ENTRY_TABLE,
+                columns,
+                select,
+                selectArgs,
+                null,
+                null,
+                null);
+
+        if (cu.moveToFirst()){
+            do{
+                // Getting the info from every row
+                String entryDate = cu.getString(1);
+                String entryTime = cu.getString(2);
+                String leaveTime = cu.getString(3);
+                String desc = cu.getString(4);
+
+                entryList.add(new Entry(userId,entryDate,entryTime,leaveTime));
+            } while (cu.moveToNext());
+        }
+        cu.close();
+        sql.close();
+        return entryList;
     }
 
     public static String getActualDateTime(){
