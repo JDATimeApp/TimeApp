@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.timeapp.Views.loginFragment;
-import com.example.timeapp.Views.registerFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = new loginFragment();
-
         fm.beginTransaction().replace(R.id.fragment_container,fragment,"Login").commit();
     }
 }
