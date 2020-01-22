@@ -47,4 +47,8 @@ public class Entry {
     public void setWorkerId(String workerId) {
         this.workerId = workerId;
     }
+
+    public String getDescription() { return description; }
+
+    public void setDescription(String description) { this.description = description; }
 }
