@@ -256,7 +256,7 @@ public class Repository {
                 String entryTime = cu.getString(2);
                 String leaveTime = cu.getString(3);
                 String desc = cu.getString(4);
-                entryList.add(new Entry(userId,entryDate,entryTime,leaveTime));
+                entryList.add(new Entry(userId,entryDate,entryTime,leaveTime, ""));
             } while (cu.moveToNext());
         }
         cu.close();

@@ -6,12 +6,14 @@ public class Entry {
     String entryTime;
     String leaveTime;
     String workerId;
+    String description;
 
-    public Entry(String workerId, String entryDate,String entryTime, String leaveTime) {
+    public Entry(String workerId, String entryDate,String entryTime, String leaveTime, String description) {
         this.workerId = workerId;
         this.entryDate = entryDate;
         this.entryTime = entryTime;
         this.leaveTime = leaveTime;
+        this.description = description;
     }
 
     public String getEntryDate() {
