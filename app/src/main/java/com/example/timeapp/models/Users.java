@@ -13,6 +13,9 @@ public class Users implements Serializable {
 
     @PrimaryKey(autoGenerate = true) // Autoincremental field
     @ColumnInfo(name = DBDesign.UserDesign.USER_COLUMN1)
+    private int idU;
+
+    @ColumnInfo(name = DBDesign.UserDesign.USER_COLUMN2)
     private String username;
 
     @ColumnInfo(name = DBDesign.UserDesign.USER_COLUMN3)
@@ -21,7 +24,8 @@ public class Users implements Serializable {
     @ColumnInfo(name = DBDesign.UserDesign.USER_COLUMN4)
     private String emailAddress;
 
-    public Users(String emailAddress,String username, String password) {
+    public Users(int idU, String emailAddress,String username, String password) {
+        this.idU = idU;
         this.username = username;
         this.password = password;
         this.emailAddress = emailAddress;
@@ -50,4 +54,9 @@ public class Users implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public int getIdU() {return idU;}
+
+    public void setIdU(int idU) {this.idU = idU;}
+
 }

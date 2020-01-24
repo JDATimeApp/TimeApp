@@ -1,11 +1,29 @@
 package com.example.timeapp.models;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+
+import com.example.timeapp.Database.DBDesign;
+
+@Entity(tableName = DBDesign.EntryDesign.ENTRY_TABLE , foreignKeys = @ForeignKey(entity = Users.class,
+                                                                parentColumns = "idU",
+                                                                childColumns = "workerId"))
 public class Entry {
 
-    String entryDate;
-    String entryTime;
-    String leaveTime;
+    @ColumnInfo(name = DBDesign.UserDesign.USER_COLUMN1)
     String workerId;
+
+    @ColumnInfo(name = DBDesign.EntryDesign.ENTRY_COLUMN1)
+    String entryDate;
+
+    @ColumnInfo(name = DBDesign.EntryDesign.ENTRY_COLUMN2)
+    String entryTime;
+
+    @ColumnInfo(name = DBDesign.EntryDesign.ENTRY_COLUMN3)
+    String leaveTime;
+
+    @ColumnInfo(name = DBDesign.EntryDesign.ENTRY_COLUMN4)
     String description;
 
     public Entry(String workerId, String entryDate,String entryTime, String leaveTime, String description) {
