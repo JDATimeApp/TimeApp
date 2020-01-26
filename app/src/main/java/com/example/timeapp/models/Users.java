@@ -1,10 +1,12 @@
 package com.example.timeapp.models;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.example.timeapp.Database.DBDesign;
+import com.google.firebase.database.annotations.NotNull;
 
 import java.io.Serializable;
 
@@ -12,15 +14,19 @@ import java.io.Serializable;
 public class Users implements Serializable {
 
     @PrimaryKey(autoGenerate = true) // Autoincremental field
+    @NonNull
     @ColumnInfo(name = DBDesign.UserDesign.USER_COLUMN1)
     private int idU;
 
+    @NonNull
     @ColumnInfo(name = DBDesign.UserDesign.USER_COLUMN2)
     private String username;
 
+    @NonNull
     @ColumnInfo(name = DBDesign.UserDesign.USER_COLUMN3)
     private String password;
 
+    @NonNull
     @ColumnInfo(name = DBDesign.UserDesign.USER_COLUMN4)
     private String emailAddress;
 

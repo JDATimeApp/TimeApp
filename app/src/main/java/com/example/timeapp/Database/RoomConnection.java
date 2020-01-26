@@ -19,7 +19,7 @@ public abstract class RoomConnection extends RoomDatabase {
 
     public static RoomConnection getRoomConnection(Context c){
         if (INSTANCE == null){
-            Room.databaseBuilder(c,RoomConnection.class,"timeapp.db").build();
+            INSTANCE = Room.databaseBuilder(c,RoomConnection.class,"timeapp.db").allowMainThreadQueries().build();
         }
         return INSTANCE;
     }

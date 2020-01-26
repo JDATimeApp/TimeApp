@@ -8,8 +8,11 @@ import android.util.Log;
 import android.widget.Toast;
 
 
+import androidx.room.Room;
+
 import com.example.timeapp.Database.DBDesign;
 import com.example.timeapp.Database.DDBB;
+import com.example.timeapp.Database.RoomConnection;
 import com.example.timeapp.models.Entry;
 import com.example.timeapp.models.Users;
 
@@ -22,16 +25,18 @@ import java.util.TimeZone;
 
 public class Repository {
 
-    private static Context context;
+    private Context context;
 
     //Creating a singleton for only one instance
     private static Repository srepository;
     public static SQLiteDatabase db;
+    private static RoomConnection r;
 
     private Repository(Context context) {
         this.context = context;
         DDBB ddbb = new DDBB(context);
         db = ddbb.getWritableDatabase();
+        r = RoomConnection.getRoomConnection(context);
     }
 
     public static Repository get(Context context) {
@@ -45,18 +50,18 @@ public class Repository {
 
     public static void closeDatabase(){
         db.close();
+        r.destroyRoomConnection();
     }
 
     public static void registerNewUser(String email, String username, String passwd, Context context) {
-        DDBB db = new DDBB(context);
-        SQLiteDatabase sql = db.getWritableDatabase();
+        RoomConnection ro = RoomConnection.getRoomConnection(context);
+        Users u = new Users();
+        u.setUsername(username);
+        u.setEmailAddress(email);
+        u.setPassword(passwd);
 
-        ContentValues values = new ContentValues();
-        values.put(DBDesign.UserDesign.USER_COLUMN2,username);
-        values.put(DBDesign.UserDesign.USER_COLUMN3,passwd);
-        values.put(DBDesign.UserDesign.USER_COLUMN4,email);
-        sql.insert(DBDesign.UserDesign.USER_TABLE, null, values);
-        sql.close();
+        ro.userDao().insertUser(u);
+        ro.close();
     }
 
 
