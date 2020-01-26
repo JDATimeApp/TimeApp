@@ -3,6 +3,7 @@ package com.example.timeapp.Repositories;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
@@ -67,30 +68,13 @@ public class Repository {
 
 
     public static boolean checkIfUserIsRegistered(String email,String username,String password,Context c){
-        DDBB db = new DDBB(c);
-        SQLiteDatabase sql = db.getReadableDatabase();
-
-        String [] columns = {"*"}; // Row to find
-        String select = DBDesign.UserDesign.USER_COLUMN2+" = ? and "+DBDesign.UserDesign.USER_COLUMN4+" = ?";
-        String [] selectArgs  = {username,email};
-
-        Cursor cu = sql.query(DBDesign.UserDesign.USER_TABLE,
-                columns,
-                select,
-                selectArgs,
-                null,
-                null,
-                null);
-
-        int result = cu.getCount();
-        cu.close();
-        if (result > 0){
-            sql.close();
-            return true;
+        RoomConnection ro = RoomConnection.getRoomConnection(c);
+        Users u = ro.userDao().checkRegisteredUsername(username);
+        Users u2 = ro.userDao().checkRegisteredEmail(email);
+        if (u == null && u2 == null) {
+            return false;
         }
-        sql.close();
-        return false;
-
+        return true;
     }
 
     public static boolean checkLogin(String username,String password,Context c) {
