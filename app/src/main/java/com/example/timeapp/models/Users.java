@@ -24,12 +24,14 @@ public class Users implements Serializable {
     @ColumnInfo(name = DBDesign.UserDesign.USER_COLUMN4)
     private String emailAddress;
 
-    public Users(int idU, String emailAddress,String username, String password) {
-        this.idU = idU;
+    public Users(){}
+
+    public Users(String emailAddress,String username, String password) {
         this.username = username;
         this.password = password;
         this.emailAddress = emailAddress;
     }
+
 
     public String getUsername() {
         return username;
