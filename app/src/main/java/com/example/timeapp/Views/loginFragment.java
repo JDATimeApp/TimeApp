@@ -3,6 +3,7 @@ package com.example.timeapp.Views;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.timeapp.UserMainActivity;
 import com.example.timeapp.ViewModels.LoginViewModel;
 import com.example.timeapp.R;
 
@@ -58,9 +60,11 @@ public class loginFragment extends Fragment {
                    SharedPreferences.Editor ed = pref.edit();
                    String userId = loginViewModel.getUserId(us,getContext());
                    ed.putString("userId",userId).apply();
-                   Fragment f = new signFragment();
-                   FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                   ft.replace(R.id.fragment_container,f).commit();
+                   Intent i = new Intent(getContext(), UserMainActivity.class);
+                   startActivity(i);
+                   //Fragment f = new signFragment();
+                   //FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                   //ft.replace(R.id.fragment_container,f).commit();
                    //Creating the file for saving session user data when is validated
                    Toast.makeText(getContext(),"Welcome to the app",Toast.LENGTH_SHORT).show();
                } else {

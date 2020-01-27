@@ -22,4 +22,9 @@
     <string name="history">History</string>
     <string name="entry_history">Entry history</string>
     <string name="report_incidence">Report incidence</string>
+    <string name="sign_nav">Sign</string>
+    <string name="menu_sign">Sign</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@gmail.com</string>
 </resources>
