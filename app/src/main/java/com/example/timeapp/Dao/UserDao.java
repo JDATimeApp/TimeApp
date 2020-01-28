@@ -7,6 +7,9 @@ import androidx.room.Query;
 import com.example.timeapp.Database.DBDesign;
 import com.example.timeapp.models.Users;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Dao
 public interface UserDao {
 
@@ -21,4 +24,7 @@ public interface UserDao {
 
     @Query("SELECT * FROM "+ DBDesign.UserDesign.USER_TABLE+" WHERE username =:username AND password =:password")
     Users checkLogin(String username,String password);
+
+    @Query("SELECT * FROM "+ DBDesign.UserDesign.USER_TABLE)
+    List<Users> getAllUsers();
 }

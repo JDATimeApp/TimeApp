@@ -21,7 +21,7 @@ public class UserRecyclerView extends RecyclerView.Adapter<UserRecyclerView.User
 
     private List<Users> usersList;
 
-    public UserRecyclerView(ArrayList<Users> usersList){
+    public UserRecyclerView(List<Users> usersList){
         this.usersList = usersList;
     }
 

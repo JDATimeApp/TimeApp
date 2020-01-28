@@ -19,6 +19,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 public class Repository {
@@ -113,33 +114,10 @@ public class Repository {
         return id;
     }
 
-    public static ArrayList<Users> getUsers (Context context)  {
-        ArrayList<Users> userList = new ArrayList<>();
-        String [] columns = {"*"};
+    public static List<Users> getUsers (Context context)  {
+        RoomConnection r = RoomConnection.getRoomConnection(context);
 
-        DDBB ddbb = new DDBB(context);
-        SQLiteDatabase sql = ddbb.getReadableDatabase();
-
-       Cursor c = sql.query(DBDesign.UserDesign.USER_TABLE,
-               columns,
-               null,
-               null,
-               null,
-               null,
-               null);
-
-       if (c.moveToFirst()){
-           do{
-               // Getting the info from every row
-               String username = c.getString(1);
-               String password = c.getString(2);
-               String email = c.getString(3);
-
-               userList.add(new Users(email,username,password));
-           } while (c.moveToNext());
-       }
-        c.close();
-       sql.close();
+        List<Users> userList = r.userDao().getAllUsers();
         return userList;
     }
 

@@ -21,6 +21,7 @@ import com.example.timeapp.R;
 import com.example.timeapp.models.Users;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class userHistoryFragment extends Fragment {
 
@@ -37,7 +38,7 @@ public class userHistoryFragment extends Fragment {
         // Set the LayoutManager
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
         // Get the data
-        ArrayList<Users> usersList;
+        List<Users> usersList;
         usersList = userHistoryViewModel.getUsersList(getContext());
         //Set the adapter
         UserRecyclerView urv = new UserRecyclerView(usersList);
