@@ -8,9 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
-
-import androidx.room.Room;
-
 import com.example.timeapp.Database.DBDesign;
 import com.example.timeapp.Database.DDBB;
 import com.example.timeapp.Database.RoomConnection;
@@ -51,7 +48,6 @@ public class Repository {
 
     public static void closeDatabase(){
         db.close();
-        r.destroyRoomConnection();
     }
 
     public static void registerNewUser(String email, String username, String passwd, Context context) {
@@ -65,15 +61,15 @@ public class Repository {
         ro.close();
     }
 
-
-
     public static boolean checkIfUserIsRegistered(String email,String username,String password,Context c){
         RoomConnection ro = RoomConnection.getRoomConnection(c);
         Users u = ro.userDao().checkRegisteredUsername(username);
         Users u2 = ro.userDao().checkRegisteredEmail(email);
         if (u == null && u2 == null) {
+            ro.close();
             return false;
         }
+        ro.close();
         return true;
     }
 

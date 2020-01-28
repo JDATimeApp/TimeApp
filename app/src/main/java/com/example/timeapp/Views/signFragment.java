@@ -29,10 +29,9 @@ public class signFragment extends Fragment {
         SharedPreferences pref = getContext().getSharedPreferences("userInfo",0);
         final String userId  = pref.getString("userId","");
 
-        Button entryBtn,leaveBtn,historyBtn;
+        Button entryBtn,leaveBtn;
         entryBtn = root.findViewById(R.id.entryBtn);
         leaveBtn = root.findViewById(R.id.leaveBtn);
-        historyBtn = root.findViewById(R.id.entryHistoryBtn);
         entryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,14 +43,6 @@ public class signFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 signViewModel.setLeaveTime(userId,getContext());
-            }
-        });
-        historyBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment f = new entryHistoryFragment();
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.fragment_container,f).commit();
             }
         });
         return root;
