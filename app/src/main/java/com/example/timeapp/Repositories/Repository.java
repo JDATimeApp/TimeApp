@@ -3,7 +3,6 @@ package com.example.timeapp.Repositories;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
@@ -89,28 +88,8 @@ public class Repository {
     }
 
     public static String getUserId(String username, Context c){
-        DDBB ddbb = new DDBB(c);
-        SQLiteDatabase sql = ddbb.getReadableDatabase();
-
-        String [] columns = {DBDesign.UserDesign.USER_COLUMN1};
-        String select = DBDesign.UserDesign.USER_COLUMN2 + "= ?";
-        String [] selectArgs = {username};
-
-        Cursor cu = sql.query(DBDesign.UserDesign.USER_TABLE,
-                columns,
-                select,
-                selectArgs,
-                null,
-                null,
-                null);
-        String id = "";
-        if (cu.moveToFirst()){
-            id = String.valueOf(cu.getInt(0));
-
-        }
-        cu.close();
-        sql.close();
-
+        RoomConnection r = RoomConnection.getRoomConnection(c);
+        String id = String.valueOf(r.userDao().getUserId(username));
         return id;
     }
 

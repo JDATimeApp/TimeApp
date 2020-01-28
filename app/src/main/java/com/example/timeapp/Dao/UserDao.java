@@ -7,7 +7,6 @@ import androidx.room.Query;
 import com.example.timeapp.Database.DBDesign;
 import com.example.timeapp.models.Users;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Dao
@@ -27,4 +26,7 @@ public interface UserDao {
 
     @Query("SELECT * FROM "+ DBDesign.UserDesign.USER_TABLE)
     List<Users> getAllUsers();
+
+    @Query("SELECT UserID FROM "+ DBDesign.UserDesign.USER_TABLE+" WHERE username=:username")
+    int getUserId(String username);
 }
