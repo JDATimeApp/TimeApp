@@ -19,4 +19,6 @@ public interface UserDao {
     @Query("SELECT * FROM "+ DBDesign.UserDesign.USER_TABLE+" WHERE emailAddress = :email")
     Users checkRegisteredEmail(String email);
 
+    @Query("SELECT * FROM "+ DBDesign.UserDesign.USER_TABLE+" WHERE username =:username AND password =:password")
+    Users checkLogin(String username,String password);
 }

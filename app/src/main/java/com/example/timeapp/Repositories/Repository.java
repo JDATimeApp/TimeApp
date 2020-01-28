@@ -74,26 +74,17 @@ public class Repository {
     }
 
     public static boolean checkLogin(String username,String password,Context c) {
-        DDBB db = new DDBB(c);
-        SQLiteDatabase sql = db.getReadableDatabase();
+        RoomConnection ro = RoomConnection.getRoomConnection(c);
 
-        String[] columns = {"*"}; // Row to find
-        String select = DBDesign.UserDesign.USER_COLUMN2 + " = ? and " + DBDesign.UserDesign.USER_COLUMN4 + " = ?";
-        String[] selectArgs = {username, password};
-        Cursor cu = sql.query(DBDesign.UserDesign.USER_TABLE,
-                columns,
-                select,
-                selectArgs,
-                null,
-                null,
-                null);
-        int result = cu.getCount();
-        if (result > 0) {
-            sql.close();
+        Users u =ro.userDao().checkLogin(username,password);
+
+        if (u != null){
+            ro.close();
             return true;
+        } else {
+            ro.close();
+            return false;
         }
-        sql.close();
-        return false;
     }
 
     public static String getUserId(String username, Context c){

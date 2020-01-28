@@ -7,6 +7,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.example.timeapp.Dao.EntryDao;
 import com.example.timeapp.Dao.UserDao;
 import com.example.timeapp.models.Users;
 
@@ -16,6 +17,8 @@ public abstract class RoomConnection extends RoomDatabase {
     private static RoomConnection INSTANCE;
 
     public abstract UserDao userDao();
+
+    public abstract EntryDao entryDao();
 
     public static RoomConnection getRoomConnection(Context c){
         if (INSTANCE == null){
