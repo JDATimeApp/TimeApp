@@ -24,6 +24,7 @@
     <string name="report_incidence">Report incidence</string>
     <string name="sign_nav">Sign</string>
     <string name="history_nav">History</string>
+    <string name="incidence_nav">Incidence</string>
     <string name="menu_sign">Sign</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="nav_header_title">Android Studio</string>
