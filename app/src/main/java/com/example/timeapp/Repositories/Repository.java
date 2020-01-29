@@ -122,34 +122,19 @@ public class Repository {
     }
 
     public static void setLeaveTime(String userId,Context c){
-        DDBB ddbb = new DDBB(c);
-        SQLiteDatabase sql = ddbb.getWritableDatabase();
+        RoomConnection r = RoomConnection.getRoomConnection(c);
 
-        String [] columns = {"*"};
-        String select = DBDesign.UserDesign.USER_COLUMN1+" = ? and "+ DBDesign.EntryDesign.ENTRY_COLUMN3+" = ? and "+ DBDesign.EntryDesign.ENTRY_COLUMN1+" = ?";
-        String [] selectArgs = {userId,"",getActualDay(getActualDateTime())};
-
-        ContentValues cv = new ContentValues();
-        cv.put(DBDesign.EntryDesign.ENTRY_COLUMN3,getActualHour(getActualDateTime()));
-
-        Cursor cu = sql.query(DBDesign.EntryDesign.ENTRY_TABLE,
-                columns,
-                select,
-                selectArgs,
-                null,
-                null,
-                null);
-        int total = cu.getCount();
-        cu.close();
-        if (total > 0) {
-            sql.update(DBDesign.EntryDesign.ENTRY_TABLE,cv,select,selectArgs);
-            Log.i("Entry","Registering leaving time");
-            Toast.makeText(c,"Leave registered , see you soon!",Toast.LENGTH_SHORT).show();
-        } else {
+        Entry e = r.entryDao().checkEntryDate(userId,getActualDay(getActualDateTime()));
+        if (e == null){
             Log.i("Entry","Something went wrong inserting leave time");
-            Toast.makeText(c,"Oops.. something went wrong!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(c,"Oops.. Something went wrong!",Toast.LENGTH_SHORT).show();
+        } else {
+            e.setLeaveTime(getActualHour(getActualDateTime()));
+            r.entryDao().updateLeaveTime(e);
+            Log.i("Entry","Registered leave time");
+            Toast.makeText(c,"See you tomorrow!",Toast.LENGTH_SHORT).show();
         }
-        sql.close();
+        r.close();
     }
 
     public static ArrayList<Entry> getUserEntries(String userId,Context c){
