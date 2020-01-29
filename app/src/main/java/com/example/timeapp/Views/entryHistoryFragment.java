@@ -19,6 +19,7 @@ import com.example.timeapp.ViewModels.entryHistoryViewModel;
 import com.example.timeapp.models.Entry;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class entryHistoryFragment extends Fragment {
 
@@ -32,7 +33,7 @@ public class entryHistoryFragment extends Fragment {
         RecyclerView rv = root.findViewById(R.id.rv_entryHistory);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        ArrayList<Entry> entryList;
+        List<Entry> entryList;
         entryList = entryHistoryViewModel.getUserEntries(userId,getContext());
         EntryRecyclerView erv = new EntryRecyclerView(entryList);
         rv.setAdapter(erv);

@@ -17,7 +17,7 @@ public class EntryRecyclerView extends RecyclerView.Adapter<EntryRecyclerView.En
 
     private List<Entry> entryList;
 
-    public EntryRecyclerView(ArrayList<Entry> entryList){this.entryList = entryList;}
+    public EntryRecyclerView(List<Entry> entryList){this.entryList = entryList;}
 
     @Override
     public EntryViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
