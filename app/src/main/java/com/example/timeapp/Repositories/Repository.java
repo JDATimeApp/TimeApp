@@ -90,6 +90,7 @@ public class Repository {
     public static String getUserId(String username, Context c){
         RoomConnection r = RoomConnection.getRoomConnection(c);
         String id = String.valueOf(r.userDao().getUserId(username));
+        r.close();
         return id;
     }
 
@@ -97,6 +98,7 @@ public class Repository {
         RoomConnection r = RoomConnection.getRoomConnection(context);
 
         List<Users> userList = r.userDao().getAllUsers();
+        r.close();
         return userList;
     }
 
