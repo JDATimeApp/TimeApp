@@ -15,6 +15,7 @@ public class DBDesign {
             UserDesign.USER_COLUMN4+" VARCHAR(40) NOT NULL)";
 
     public static final String ENTRY_CREATE_TABLE = "CREATE TABLE "+EntryDesign.ENTRY_TABLE+"("+
+            EntryDesign.ENTRY_COLUMN5+" PRIMARY KEY AUTOINCREMENT NOT NULL,"+
             UserDesign.USER_COLUMN1+" INTEGER,"+
             EntryDesign.ENTRY_COLUMN1+" TEXT NOT NULL,"+
             EntryDesign.ENTRY_COLUMN2+" TEXT NOT NULL,"+
@@ -46,6 +47,7 @@ public class DBDesign {
         public static final String ENTRY_COLUMN2 = "EntryTime"; // Time
         public static final String ENTRY_COLUMN3 = "Leavetime"; // text
         public static final String ENTRY_COLUMN4 = "Description"; // Time
+        public static final String ENTRY_COLUMN5 = "EntryId";
     }
 
     public static class ScheduleDesign {

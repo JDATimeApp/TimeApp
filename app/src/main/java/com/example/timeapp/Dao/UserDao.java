@@ -28,5 +28,5 @@ public interface UserDao {
     List<Users> getAllUsers();
 
     @Query("SELECT UserID FROM "+ DBDesign.UserDesign.USER_TABLE+" WHERE username=:username")
-    int getUserId(String username);
+    int  getUserId(String username);
 }

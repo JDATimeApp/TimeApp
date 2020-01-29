@@ -103,37 +103,22 @@ public class Repository {
     }
 
     public static void setEntryTime(String userId, Context c){
-        DDBB ddbb = new DDBB(c);
-        SQLiteDatabase sql = ddbb.getWritableDatabase();
+        RoomConnection r = RoomConnection.getRoomConnection(c);
 
-        String [] columns = {"*"};
-        String select = DBDesign.UserDesign.USER_COLUMN1 + "=? and "+DBDesign.EntryDesign.ENTRY_COLUMN1+ "=?";
-        String [] selectArgs = {userId,getActualDay(getActualDateTime())};
-
-        Cursor cu = sql.query(DBDesign.EntryDesign.ENTRY_TABLE,
-                columns,
-                select,
-                selectArgs,
-                null,
-                null,
-                null);
-        int total = cu.getCount();
-        cu.close();
-        if (total > 0){
-            Log.i("Entry","Found an entry");
-            Toast.makeText(c,"Already checked in today!",Toast.LENGTH_SHORT).show();
-        } else {
-            ContentValues values = new ContentValues();
-            values.put(DBDesign.UserDesign.USER_COLUMN1,userId);
-            values.put(DBDesign.EntryDesign.ENTRY_COLUMN1,getActualDay(getActualDateTime()));
-            values.put(DBDesign.EntryDesign.ENTRY_COLUMN2,getActualHour(getActualDateTime()));
-            values.put(DBDesign.EntryDesign.ENTRY_COLUMN3,"");
-            values.put(DBDesign.EntryDesign.ENTRY_COLUMN4,"");
-            sql.insert(DBDesign.EntryDesign.ENTRY_TABLE,null,values);
+        Entry e = r.entryDao().checkEntry(userId,getActualDay(getActualDateTime()));
+        if (e == null){
+            Entry entry = new Entry();
+            entry.setWorkerId(userId);
+            entry.setEntryDate(getActualDay(getActualDateTime()));
+            entry.setEntryTime(getActualHour(getActualDateTime()));
+            r.entryDao().insertEntry(entry);
             Log.i("Entry","No entry .. inserting new");
             Toast.makeText(c,"Thank you for checking in!",Toast.LENGTH_SHORT).show();
+        } else {
+            Log.i("Entry","Found an entry");
+            Toast.makeText(c,"Already checked in today!",Toast.LENGTH_SHORT).show();
         }
-        sql.close();
+        r.close();
     }
 
     public static void setLeaveTime(String userId,Context c){

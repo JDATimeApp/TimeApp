@@ -1,19 +1,27 @@
 package com.example.timeapp.models;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.PrimaryKey;
 
 import com.example.timeapp.Database.DBDesign;
 
 @Entity(tableName = DBDesign.EntryDesign.ENTRY_TABLE , foreignKeys = @ForeignKey(entity = Users.class,
-                                                                parentColumns = "idU",
-                                                                childColumns = "workerId"))
+                                                                parentColumns = DBDesign.UserDesign.USER_COLUMN1,
+                                                                childColumns = DBDesign.UserDesign.USER_COLUMN1))
 public class Entry {
 
+    @NonNull
+    @PrimaryKey(autoGenerate = true)
+    int entryId;
+
+    @NonNull
     @ColumnInfo(name = DBDesign.UserDesign.USER_COLUMN1)
     String workerId;
 
+    @NonNull
     @ColumnInfo(name = DBDesign.EntryDesign.ENTRY_COLUMN1)
     String entryDate;
 
@@ -25,6 +33,8 @@ public class Entry {
 
     @ColumnInfo(name = DBDesign.EntryDesign.ENTRY_COLUMN4)
     String description;
+
+    public Entry(){}
 
     public Entry(String workerId, String entryDate,String entryTime, String leaveTime, String description) {
         this.workerId = workerId;
@@ -69,4 +79,8 @@ public class Entry {
     public String getDescription() { return description; }
 
     public void setDescription(String description) { this.description = description; }
+
+    public int getEntryId() {return entryId;}
+
+    public void setEntryId(int entryId) {this.entryId = entryId;}
 }
