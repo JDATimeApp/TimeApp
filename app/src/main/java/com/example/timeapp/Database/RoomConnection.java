@@ -12,7 +12,7 @@ import com.example.timeapp.Dao.UserDao;
 import com.example.timeapp.models.Entry;
 import com.example.timeapp.models.Users;
 
-@Database(entities = {Users.class, Entry.class}, version = 1)
+@Database(entities = {Users.class, Entry.class}, version = 2)
 public abstract class RoomConnection extends RoomDatabase {
 
     private static RoomConnection INSTANCE;
