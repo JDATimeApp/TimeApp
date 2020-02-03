@@ -1,13 +1,10 @@
 package com.example.timeapp.Repositories;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.timeapp.Database.DBDesign;
 import com.example.timeapp.Database.DDBB;
 import com.example.timeapp.Database.RoomConnection;
 import com.example.timeapp.models.Entry;
@@ -16,7 +13,6 @@ import com.example.timeapp.models.Users;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
@@ -58,6 +54,7 @@ public class Repository {
         u.setPassword(passwd);
 
         ro.userDao().insertUser(u);
+        r.destroyRoomConnection();
         ro.close();
     }
 
@@ -66,9 +63,11 @@ public class Repository {
         Users u = ro.userDao().checkRegisteredUsername(username);
         Users u2 = ro.userDao().checkRegisteredEmail(email);
         if (u == null && u2 == null) {
+            r.destroyRoomConnection();
             ro.close();
             return false;
         }
+        r.destroyRoomConnection();
         ro.close();
         return true;
     }
@@ -79,9 +78,11 @@ public class Repository {
         Users u =ro.userDao().checkLogin(username,password);
 
         if (u != null){
+            r.destroyRoomConnection();
             ro.close();
             return true;
         } else {
+            r.destroyRoomConnection();
             ro.close();
             return false;
         }
@@ -90,6 +91,7 @@ public class Repository {
     public static String getUserId(String username, Context c){
         RoomConnection r = RoomConnection.getRoomConnection(c);
         String id = String.valueOf(r.userDao().getUserId(username));
+        r.destroyRoomConnection();
         r.close();
         return id;
     }
@@ -98,6 +100,7 @@ public class Repository {
         RoomConnection r = RoomConnection.getRoomConnection(context);
 
         List<Users> userList = r.userDao().getAllUsers();
+        r.destroyRoomConnection();
         r.close();
         return userList;
     }
@@ -118,6 +121,7 @@ public class Repository {
             Log.i("Entry","Found an entry");
             Toast.makeText(c,"Already checked in today!",Toast.LENGTH_SHORT).show();
         }
+        r.destroyRoomConnection();
         r.close();
     }
 
@@ -134,6 +138,7 @@ public class Repository {
             Log.i("Entry","Registered leave time");
             Toast.makeText(c,"See you tomorrow!",Toast.LENGTH_SHORT).show();
         }
+        r.destroyRoomConnection();
         r.close();
     }
 
