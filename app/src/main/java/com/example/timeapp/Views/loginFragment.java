@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.timeapp.AdminMainActivity;
 import com.example.timeapp.UserMainActivity;
 import com.example.timeapp.ViewModels.LoginViewModel;
 import com.example.timeapp.R;
@@ -85,9 +86,8 @@ public class loginFragment extends Fragment {
         isAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment f = new userHistoryFragment();
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.fragment_container,f);ft.addToBackStack(null).commit();
+                Intent i = new Intent(getContext(), AdminMainActivity.class);
+                startActivity(i);
             }
         });
         return root;
