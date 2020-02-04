@@ -8,7 +8,10 @@ import android.widget.Toast;
 import com.example.timeapp.Database.DDBB;
 import com.example.timeapp.Database.RoomConnection;
 import com.example.timeapp.models.Entry;
+import com.example.timeapp.models.Incidence;
 import com.example.timeapp.models.Users;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 import java.text.DateFormat;
@@ -145,8 +148,15 @@ public class Repository {
     public static List<Entry> getUserEntries(String userId,Context c){
         RoomConnection r = RoomConnection.getRoomConnection(c);
         List<Entry> entryList = r.entryDao().getUserEntries(userId);
+        r.destroyRoomConnection();
         r.close();
         return entryList;
+    }
+
+    public static void reportIncidence(Incidence i){
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference ref = firebaseDatabase.getReference().child("Incidences");
+        ref.push().setValue(i);
     }
 
     public static String getActualDateTime(){
