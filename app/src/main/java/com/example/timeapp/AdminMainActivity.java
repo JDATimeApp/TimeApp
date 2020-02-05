@@ -21,11 +21,11 @@ public class AdminMainActivity extends AppCompatActivity {
         DrawerLayout drawer = findViewById(R.id.drawer_adminlayout);
         NavigationView navigationView = findViewById(R.id.nav_adminview);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_adminHistory)
+                R.id.nav_adminHistory,R.id.nav_incidenceHistory)
                 .setDrawerLayout(drawer).build();
 
         NavController navController = Navigation.findNavController(this,R.id.nav_host_adminfragment);
-        //NavigationUI.setupActionBarWithNavController(this,navController,mAppBarConfiguration);
+        //NavigationUI.setupActionBarWithNavController(this,navController,mAppBar Configuration);
         NavigationUI.setupWithNavController(navigationView,navController);
 
     }
