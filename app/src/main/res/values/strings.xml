@@ -29,5 +29,6 @@
     <string name="incidences_reported">Incidences Reported</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="nav_header_title">Android Studio</string>
+    <string name="message">Message</string>
     <string name="nav_header_subtitle">android.studio@gmail.com</string>
 </resources>

@@ -29,22 +29,23 @@ public class reportIncidenceFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.report_incidence_fragment,container,false);
         reportIncindenceViewModel = ViewModelProviders.of(this).get(ReportIncindenceViewModel.class);
-        final EditText message= root.findViewById(R.id.incidenceMessage);
+        final EditText subject= root.findViewById(R.id.messageSubject);
+        final EditText message = root.findViewById(R.id.messageBody);
         Button reportIncidenceBtn= root.findViewById(R.id.btnReportIncidence);
-
+        final SharedPreferences pref = getContext().getSharedPreferences("userInfo",0);
         reportIncidenceBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (message.getText().toString().isEmpty()){
-                    Toast.makeText(getContext(),"Incidence must not be empty!",Toast.LENGTH_SHORT).show();
-                    Log.d("Incidence","Incidence text is empty!");
+                if (subject.getText().toString().isEmpty()){
+                    Toast.makeText(getContext(),"Subject must not be empty!",Toast.LENGTH_SHORT).show();
+                } else if (message.getText().toString().isEmpty()){
+                    Toast.makeText(getContext(),"Message must not be empty!",Toast.LENGTH_SHORT).show();
                 } else {
-                    SharedPreferences pref = getContext().getSharedPreferences("userInfo",0);
                     String userId = pref.getString("userId","");
                     reportIncindenceViewModel.reportIncidence(new Incidence(userId,
+                            subject.getText().toString(),
                             message.getText().toString(),
                             Repository.getActualDateTime()));
-                    Toast.makeText(getContext(),"Incidence reported successfully",Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -3,13 +3,16 @@ package com.example.timeapp.models;
 public class Incidence {
 
     String userId;
+    String subject;
     String message;
     String date;
 
-    public Incidence(String userId, String message, String date) {
+
+    public Incidence(String userId, String subject, String message, String date) {
         this.userId = userId;
         this.message = message;
         this.date = date;
+        this.subject = subject;
     }
 
     public String getUserId() {
@@ -34,5 +37,13 @@ public class Incidence {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 }
