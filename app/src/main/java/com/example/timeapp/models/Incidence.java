@@ -6,14 +6,16 @@ public class Incidence {
     String subject;
     String message;
     String date;
+    String username;
 
     public Incidence() {}
 
-    public Incidence(String userId, String subject, String message, String date) {
+    public Incidence(String userId, String username, String subject, String message, String date) {
         this.userId = userId;
         this.message = message;
         this.date = date;
         this.subject = subject;
+        this.username = username;
     }
 
     public String getUserId() {
@@ -42,6 +44,14 @@ public class Incidence {
 
     public String getSubject() {
         return subject;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public void setSubject(String subject) {

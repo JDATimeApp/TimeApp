@@ -43,6 +43,7 @@ public class reportIncidenceFragment extends Fragment {
                 } else {
                     String userId = pref.getString("userId","");
                     reportIncindenceViewModel.reportIncidence(new Incidence(userId,
+                            reportIncindenceViewModel.getUsernameById(userId,getContext()),
                             subject.getText().toString(),
                             message.getText().toString(),
                             Repository.getActualDay(Repository.getActualDateTime())));

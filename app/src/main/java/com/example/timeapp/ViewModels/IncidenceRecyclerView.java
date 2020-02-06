@@ -30,7 +30,7 @@ public class IncidenceRecyclerView extends RecyclerView.Adapter<IncidenceRecycle
 
     @Override
     public void onBindViewHolder(IncidenceViewHolder holder, int position) {
-        holder.Username.setText(incidences.get(position).getUserId());
+        holder.Username.setText(incidences.get(position).getUsername());
         holder.Subject.setText(incidences.get(position).getSubject());
         holder.Date.setText(incidences.get(position).getDate());
     }
