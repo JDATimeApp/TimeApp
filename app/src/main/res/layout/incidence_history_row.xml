@@ -12,12 +12,15 @@
         android:text=""/>
     <TextView
         android:id="@+id/txtSubject"
-        android:layout_width="220dp"
+        android:layout_width="190dp"
         android:layout_height="100dp"
+        android:gravity="center"
         android:layout_toRightOf="@+id/txtUsername"/>
     <TextView
         android:id="@+id/txtDate"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:gravity="center"
         android:layout_toRightOf="@+id/txtSubject"/>
+
 </RelativeLayout>

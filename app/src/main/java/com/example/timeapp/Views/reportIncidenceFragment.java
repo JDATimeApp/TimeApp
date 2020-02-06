@@ -45,7 +45,7 @@ public class reportIncidenceFragment extends Fragment {
                     reportIncindenceViewModel.reportIncidence(new Incidence(userId,
                             subject.getText().toString(),
                             message.getText().toString(),
-                            Repository.getActualDateTime()));
+                            Repository.getActualDay(Repository.getActualDateTime())));
                 }
             }
         });

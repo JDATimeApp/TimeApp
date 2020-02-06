@@ -7,6 +7,7 @@ public class Incidence {
     String message;
     String date;
 
+    public Incidence() {}
 
     public Incidence(String userId, String subject, String message, String date) {
         this.userId = userId;

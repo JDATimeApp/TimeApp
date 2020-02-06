@@ -18,6 +18,10 @@ public class IncidenceRecyclerView extends RecyclerView.Adapter<IncidenceRecycle
 
     public IncidenceRecyclerView(ArrayList<Incidence> incidences){this.incidences = incidences;}
 
+    public void setIncidences(ArrayList<Incidence> incidences) {
+        this.incidences = incidences;
+    }
+
     @Override
     public IncidenceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.incidence_history_row,parent,false);
@@ -42,9 +46,9 @@ public class IncidenceRecyclerView extends RecyclerView.Adapter<IncidenceRecycle
 
         public IncidenceViewHolder(View row) {
             super(row);
-            Username.findViewById(R.id.txtUsername);
-            Subject.findViewById(R.id.txtSubject);
-            Date.findViewById(R.id.txtDate);
+            Username = row.findViewById(R.id.txtUsername);
+            Subject = row.findViewById(R.id.txtSubject);
+            Date = row.findViewById(R.id.txtDate);
         }
     }
 }
