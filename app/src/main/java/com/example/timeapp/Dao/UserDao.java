@@ -27,6 +27,9 @@ public interface UserDao {
     @Query("SELECT * FROM "+ DBDesign.UserDesign.USER_TABLE)
     List<Users> getAllUsers();
 
+    @Query("SELECT * FROM "+ DBDesign.UserDesign.USER_TABLE+" WHERE UserID = :userId")
+    String getUsernameById(String userId);
+
     @Query("SELECT UserID FROM "+ DBDesign.UserDesign.USER_TABLE+" WHERE username=:username")
     int  getUserId(String username);
 }

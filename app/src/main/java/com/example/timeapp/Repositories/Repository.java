@@ -99,6 +99,14 @@ public class Repository {
         return id;
     }
 
+    public static String getUsernameById(String userId,Context c){
+        RoomConnection r = RoomConnection.getRoomConnection(c);
+        String username = r.userDao().getUsernameById(userId);
+        r.destroyRoomConnection();
+        r.close();
+        return username;
+    }
+
     public static List<Users> getUsers (Context context)  {
         RoomConnection r = RoomConnection.getRoomConnection(context);
 
