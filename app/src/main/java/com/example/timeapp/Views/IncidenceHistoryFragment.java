@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,7 +34,7 @@ public class IncidenceHistoryFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         rv.setLayoutManager(llm);
 
-        final IncidenceRecyclerView adapter = new IncidenceRecyclerView(incidences);
+        final IncidenceRecyclerView adapter = new IncidenceRecyclerView(incidences, Navigation.findNavController(getActivity(),R.id.nav_host_adminfragment));
         incidenceHistoryViewModel.getReportedIncidences();
         incidenceHistoryViewModel.getIncidenceList().observe(this,
                 new Observer<ArrayList<Incidence>>() {
@@ -44,6 +45,7 @@ public class IncidenceHistoryFragment extends Fragment {
                         adapter.notifyDataSetChanged();
                     }
                 });
+        incidences.clear(); // Clearing the arrayList to prevent duplicate data
         rv.setAdapter(adapter);
         return root;
     }

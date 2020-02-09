@@ -14,4 +14,9 @@
         android:id="@+id/nav_incidenceHistory"
         android:name="com.example.timeapp.Views.IncidenceHistoryFragment"
         android:label="@string/incidence_nav"/>
+
+    <fragment
+        android:id="@+id/incidence_info"
+        android:name="com.example.timeapp.Views.incidenceInfo"/>
+
 </navigation>
