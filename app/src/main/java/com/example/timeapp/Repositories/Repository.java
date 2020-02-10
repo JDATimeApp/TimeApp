@@ -2,6 +2,7 @@ package com.example.timeapp.Repositories;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -14,6 +15,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,6 +32,14 @@ public class Repository {
     private static Repository srepository;
     public static SQLiteDatabase db;
     private static RoomConnection r;
+
+    // *** PostgreSQL Strings ***
+    private static String driverLocation = "org.postgresql.Driver";
+    private static String postgresConnection = "jdbc:postgresql://192.168.0.22:5432";
+    private static String postgresUsername = "hedy";
+    private static String postgresPassword = "lamarr";
+    // *** End of PostgreSQL String ***
+
 
     private Repository(Context context) {
         this.context = context;
@@ -184,4 +196,23 @@ public class Repository {
         String [] d = actualDateTime.split(" ");
         return d[0];
     }
+
+    public Connection openPostgresConnection(){
+        Connection conn = null;
+
+        try {
+            Class.forName(driverLocation);
+
+            conn = DriverManager.getConnection(postgresConnection,postgresUsername,postgresPassword);
+            Log.d("PostgreSQL","Connected to the postgres server successfully");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            Log.d("PostgreSQL",e.getMessage());
+        }
+        return conn;
+    }
+
+
 }
