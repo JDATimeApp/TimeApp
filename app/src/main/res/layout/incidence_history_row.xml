@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <TextView
@@ -9,17 +10,20 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:gravity="center"
+        app:fontFamily="@font/sriracha"
         android:text=""/>
     <TextView
         android:id="@+id/txtSubject"
         android:layout_width="190dp"
         android:layout_height="100dp"
+        app:fontFamily="@font/sriracha"
         android:gravity="center"
         android:layout_toRightOf="@+id/txtUsername"/>
     <TextView
         android:id="@+id/txtDate"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        app:fontFamily="@font/sriracha"
         android:gravity="center"
         android:layout_toRightOf="@+id/txtSubject"/>
 

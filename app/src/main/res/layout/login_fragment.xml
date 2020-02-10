@@ -18,6 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            app:fontFamily="@font/sriracha"
             android:layout_marginRight="20sp"
             android:layout_marginTop="10dp"
             android:textSize="18sp"
@@ -52,6 +53,7 @@
             android:layout_marginRight="25dp"
             android:layout_height="40dp"
             android:gravity="center"
+            app:fontFamily="@font/sriracha"
             android:ems="10"
             android:hint="@string/txt_username"
             android:background="@drawable/background_text_edit"
@@ -70,6 +72,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_marginBottom="20dp"
+            app:fontFamily="@font/sriracha"
             android:ems="10"
             android:hint="@string/txt_password"
             android:background="@drawable/background_text_edit"
@@ -86,6 +89,7 @@
             android:layout_height="wrap_content"
             android:text="@string/remember_password"
             android:layout_marginLeft="30dp"
+            app:fontFamily="@font/sriracha"
             android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toTopOf="@+id/entrar"
             app:layout_constraintEnd_toEndOf="parent"
@@ -102,6 +106,7 @@
             android:gravity="center"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="30dp"
+            app:fontFamily="@font/sriracha"
             android:layout_marginRight="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -123,26 +128,26 @@
             android:layout_height="wrap_content"
             android:text="@string/forgot_password"
             android:hint="@string/forgot_password"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="30dp"
+            app:fontFamily="@font/sriracha"
+            android:gravity="center"
+            android:layout_weight="1"
             app:layout_constraintEnd_toStartOf="@+id/linkRegister"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="513dp"
-            android:layout_marginStart="30dp" />
+            tools:layout_editor_absoluteY="513dp" />
 
         <TextView
             android:id="@+id/linkRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="end"
-            android:layout_marginLeft="40dp"
+            android:gravity="center"
+            android:layout_weight="1"
             android:text="@string/account_Register"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/forgot_password1"
             tools:layout_editor_absoluteY="513dp"
-            android:layout_marginStart="40dp" />
+            app:fontFamily="@font/sriracha" />
 
     </LinearLayout>
 
@@ -160,7 +165,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/orr"
-            android:hint="@string/orr"
+            app:fontFamily="@font/sriracha"
             android:layout_marginTop="20dp"
             android:textSize="24sp"
             android:layout_marginBottom="20dp"

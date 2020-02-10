@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
 
@@ -39,6 +40,7 @@
             android:layout_marginLeft="30dp"
             android:importantForAutofill="no"
             android:hint="@string/email_address"
+            app:fontFamily="@font/sriracha"
             android:layout_marginRight="30dp"
             android:gravity="center"
             android:background="@drawable/background_text_edit"
@@ -53,6 +55,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:importantForAutofill="no"
+            app:fontFamily="@font/sriracha"
             android:hint="@string/txt_username"
             android:gravity="center"
             android:background="@drawable/background_text_edit"
@@ -65,6 +68,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
+            app:fontFamily="@font/sriracha"
             android:gravity="center"
             android:importantForAutofill="no"
             android:inputType="textPassword"
@@ -90,6 +94,7 @@
             android:layout_marginRight="25dp"
             android:layout_gravity="center"
             android:background="@drawable/btn_register"
+            app:fontFamily="@font/sriracha"
             android:text="@string/btn_register"/>
 
     </LinearLayout>

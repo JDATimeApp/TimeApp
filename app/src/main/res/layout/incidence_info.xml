@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:layout_marginTop="20dp" android:layout_marginBottom="20dp"
-    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="20dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
 
     <LinearLayout
         android:id="@+id/ll1"
@@ -16,6 +20,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:textSize="20sp"
+            app:fontFamily="@font/sriracha"
             android:gravity="center"/>
 
     </LinearLayout>
@@ -34,6 +39,7 @@
             android:text="@string/incidence_from"
             android:textSize="20sp"
             android:gravity="center"
+            app:fontFamily="@font/sriracha"
             android:layout_weight="1"/>
 
         <TextView
@@ -41,6 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textSize="20sp"
+            app:fontFamily="@font/sriracha"
             android:gravity="center"
             android:layout_weight="1"/>
 
@@ -52,12 +59,14 @@
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:fontFamily="@font/sriracha"
         android:layout_below="@id/ll2">
 
         <TextView
             android:id="@+id/incidence_subject"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            app:fontFamily="@font/sriracha"
             android:gravity="center"/>
     </LinearLayout>
 
@@ -68,6 +77,7 @@
         android:layout_marginBottom="30dp"
         android:layout_width="match_parent"
         android:textSize="30sp"
+        app:fontFamily="@font/sriracha"
         android:layout_height="match_parent"
         android:layout_below="@id/ll3"/>
 </RelativeLayout>
