@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.timeapp.Database.DBDesign;
 import com.example.timeapp.Database.DDBB;
 import com.example.timeapp.Database.RoomConnection;
 import com.example.timeapp.models.Entry;
@@ -18,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -33,9 +35,9 @@ public class Repository {
     public static SQLiteDatabase db;
     private static RoomConnection r;
 
-    // *** PostgreSQL Strings ***
+    // *** PostgreSQL Constants ***
     private static String driverLocation = "org.postgresql.Driver";
-    private static String postgresConnection = "jdbc:postgresql://192.168.0.22:5432";
+    private static String postgresConnection = "jdbc:postgresql://192.168.0.22:5432/";
     private static String postgresUsername = "hedy";
     private static String postgresPassword = "lamarr";
     // *** End of PostgreSQL String ***
@@ -196,23 +198,49 @@ public class Repository {
         String [] d = actualDateTime.split(" ");
         return d[0];
     }
+    private static Connection connection = null;
 
-    public Connection openPostgresConnection(){
-        Connection conn = null;
-
+    public static Connection openPostgresConnection(){
         try {
             Class.forName(driverLocation);
 
-            conn = DriverManager.getConnection(postgresConnection,postgresUsername,postgresPassword);
-            Log.d("PostgreSQL","Connected to the postgres server successfully");
+            connection = DriverManager.getConnection(postgresConnection,postgresUsername,
+                    postgresPassword);
 
+            if (connection != null){
+                Log.d("PostgreSQL","Connected to the postgres server successfully");
+            } else {
+                Log.d("PostgreSQL","Failed to connect");
+            }
+
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+            Log.d("PostgreSQL","Error connecting to PostgreSQL server");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        } catch (SQLException e) {
-            Log.d("PostgreSQL",e.getMessage());
         }
-        return conn;
+        return connection;
     }
 
+    public static class insertUserTask extends AsyncTask<Void,Void,Void>{
 
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            Connection c = openPostgresConnection();
+            String sqlStatement = "INSERT INTO users VALUES(1,'as','as','as');";
+            Statement user;
+            try {
+                user = c.createStatement();
+                user.execute(sqlStatement);
+                user.close();
+                c.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+    }
 }

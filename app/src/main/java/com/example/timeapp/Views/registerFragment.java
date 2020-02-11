@@ -14,7 +14,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.timeapp.R;
+import com.example.timeapp.Repositories.Repository;
 import com.example.timeapp.ViewModels.registerViewModel;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public class registerFragment extends Fragment {
 
@@ -41,7 +45,9 @@ public class registerFragment extends Fragment {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean t = registerViewModel.checkIfUserIsRegistered(editTxtEmail.getText().toString(),
+                Repository.insertUserTask insertUserTask = new Repository.insertUserTask();
+                insertUserTask.execute();
+/*                boolean t = registerViewModel.checkIfUserIsRegistered(editTxtEmail.getText().toString(),
                         editTxtUsername.getText().toString(),
                         editTxtPassword.getText().toString(),getContext());
 
@@ -49,7 +55,7 @@ public class registerFragment extends Fragment {
                     Toast.makeText(getContext(),"That username is already registered!",Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getContext(),"Thank you for registering "+editTxtEmail.getText().toString(),Toast.LENGTH_SHORT).show();
-                }
+                }*/
                 Log.d("Click","clickado");
                 // fragment_container is where the fragment is going to  be drawn
             }
