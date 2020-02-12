@@ -1,6 +1,7 @@
 package com.example.timeapp.Views;
 
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
@@ -28,7 +29,6 @@ import com.example.timeapp.R;
 public class loginFragment extends Fragment {
 
     private LoginViewModel loginViewModel;
-
     EditText username, password;
     TextView remember;
     Button   login;
@@ -53,7 +53,7 @@ public class loginFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String us = username.getText().toString();
-               Boolean t =loginViewModel.checkLogin(username.getText().toString(),
+               /*Boolean t =loginViewModel.checkLogin(username.getText().toString(),
                        password.getText().toString(),
                        getContext());
                if (t == true){
@@ -70,7 +70,20 @@ public class loginFragment extends Fragment {
                    Toast.makeText(getContext(),"Welcome to the app",Toast.LENGTH_SHORT).show();
                } else {
                    Toast.makeText(getContext(),"You are not registered!",Toast.LENGTH_SHORT).show();
-               }
+               }*/
+
+                LoginViewModel.loginUserTask loginUserTask = new LoginViewModel.loginUserTask(
+                        username.getText().toString(),
+                        password.getText().toString(),
+                        getContext());
+
+                /*loginUserTask.getResult().observe(this,
+                        new Observer<Boolean>() {
+                    @Override
+                    public void onChanged(Boolean aBoolean) {
+                        Boolean res = aBoolean;
+                    }
+                });*/
             }
         });
         
