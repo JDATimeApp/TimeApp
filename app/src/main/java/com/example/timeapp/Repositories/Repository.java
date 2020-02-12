@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.timeapp.Database.DBDesign;
 import com.example.timeapp.Database.DDBB;
 import com.example.timeapp.Database.RoomConnection;
 import com.example.timeapp.models.Entry;
@@ -18,6 +17,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
@@ -28,7 +29,7 @@ import java.util.TimeZone;
 
 public class Repository {
 
-    private Context context;
+    //private Context context;
 
     //Creating a singleton for only one instance
     private static Repository srepository;
@@ -44,7 +45,6 @@ public class Repository {
 
 
     private Repository(Context context) {
-        this.context = context;
         DDBB ddbb = new DDBB(context);
         db = ddbb.getWritableDatabase();
         r = RoomConnection.getRoomConnection(context);
@@ -75,7 +75,7 @@ public class Repository {
         ro.close();
     }
 
-    public static boolean checkIfUserIsRegistered(String email,String username,String password,Context c){
+    public static boolean checkIfUserIsRegistered(String email,String username,Context c){
         RoomConnection ro = RoomConnection.getRoomConnection(c);
         Users u = ro.userDao().checkRegisteredUsername(username);
         Users u2 = ro.userDao().checkRegisteredEmail(email);
@@ -221,26 +221,5 @@ public class Repository {
             e.printStackTrace();
         }
         return connection;
-    }
-
-    public static class insertUserTask extends AsyncTask<Void,Void,Void>{
-
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            Connection c = openPostgresConnection();
-            String sqlStatement = "INSERT INTO users VALUES(1,'as','as','as');";
-            Statement user;
-            try {
-                user = c.createStatement();
-                user.execute(sqlStatement);
-                user.close();
-                c.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
     }
 }
