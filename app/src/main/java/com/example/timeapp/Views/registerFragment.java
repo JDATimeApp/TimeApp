@@ -53,7 +53,6 @@ public class registerFragment extends Fragment {
                         editTxtPassword.getText().toString(),getContext());
 
                 insertUserTask.execute();
-
                 Log.d("Click","clickado");
 
             }

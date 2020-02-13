@@ -76,7 +76,7 @@ public class LoginViewModel extends ViewModel {
                     e.printStackTrace();
                 }
             } else {
-                if ((Repository.checkLogin(username,password,context)) == false){
+                if ((Repository.checkLogin(username,password,context)) == true){
                     Log.d("PostgreSQL","User "+username+" has been login - LiteSQL");
                     output = true;
 

@@ -34,6 +34,7 @@ public class loginFragment extends Fragment {
     Button   login;
     TextView forgot_password1, linkRegister;
     TextView isAdmin;
+    Boolean result;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -77,16 +78,29 @@ public class loginFragment extends Fragment {
                         password.getText().toString(),
                         getContext());
 
-                /*loginUserTask.getResult().observe(this,
+                loginUserTask.execute();
+
+                loginUserTask.getResult().observe(getViewLifecycleOwner(),
                         new Observer<Boolean>() {
                     @Override
                     public void onChanged(Boolean aBoolean) {
-                        Boolean res = aBoolean;
+
+                        if (aBoolean) {
+                            Intent i = new Intent(getContext(), UserMainActivity.class);
+                            startActivity(i);
+                        } else {
+                            Toast.makeText(getContext(), "User is not registered!", Toast.LENGTH_LONG).show();
+                        }
                     }
-                });*/
+                });
+
+                loginUserTask.getResult();
+
+
+
             }
         });
-        
+
         linkRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
