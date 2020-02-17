@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "743443792778-1mitti8ckla4hh6dhiblg86gp177vfj1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.timeapp",
+            "certificate_hash": "aecd49d175aef3440d16f4182081c38fde307433"
+          }
+        },
+        {
           "client_id": "743443792778-2a9fdaqatlfcb4glm13svl7ve0dkbjie.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
