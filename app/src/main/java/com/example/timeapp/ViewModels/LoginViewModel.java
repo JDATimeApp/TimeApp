@@ -2,6 +2,7 @@ package com.example.timeapp.ViewModels;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -69,7 +70,29 @@ public class LoginViewModel extends ViewModel {
                     ResultSet rst = Validation.executeQuery();
 
                     if (!(rst.next() == false)) {
+
                         output = true;
+
+                        String userIdQuery = "SELECT userid from Users where username = ?";
+                        PreparedStatement user;
+
+                        user = c.prepareStatement(userIdQuery);
+                        user.setString(1,username);
+
+                        ResultSet r = user.executeQuery();
+                        if (r != null){
+
+                            String userId = "";
+
+                            while (r.next()){
+                                userId = r.getString(1);
+                            }
+
+                            SharedPreferences pref = context.getSharedPreferences("userInfo",0);
+                            SharedPreferences.Editor ed = pref.edit();
+                            ed.putString("userId",userId).apply();
+
+                        }
                     }
 
                 } catch (SQLException e) {

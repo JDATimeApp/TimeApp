@@ -88,6 +88,7 @@ public class loginFragment extends Fragment {
                         if (aBoolean) {
                             Intent i = new Intent(getContext(), UserMainActivity.class);
                             startActivity(i);
+
                         } else {
                             Toast.makeText(getContext(), "User is not registered!", Toast.LENGTH_LONG).show();
                         }
