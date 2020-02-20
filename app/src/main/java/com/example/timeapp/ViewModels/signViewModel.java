@@ -1,10 +1,18 @@
 package com.example.timeapp.ViewModels;
 
 import android.content.Context;
+import android.os.AsyncTask;
 
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.timeapp.Repositories.Repository;
+import com.google.firebase.database.core.Repo;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class signViewModel extends ViewModel {
     public static void setEntryTime(String userId, Context c){
@@ -13,5 +21,65 @@ public class signViewModel extends ViewModel {
 
     public static void setLeaveTime(String userId,Context c){
         Repository.setLeaveTime(userId,c);
+    }
+
+    public static class signUserTask extends AsyncTask<Void,Void,Boolean> {
+        private String userid;
+        private Context context;
+        private String description;
+
+        private final MutableLiveData<Boolean> result = new MutableLiveData<>();
+
+        public MutableLiveData<Boolean> getResult() {
+            return result;
+        }
+
+        public signUserTask(String userid, String description, Context c) {
+            this.userid = userid;
+            this.description = description;
+            this.context = c;
+
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            Connection c = Repository.openPostgresConnection();
+            Boolean output = false;
+
+            if (c != null) {
+                String entryValidation ="SELECT * FROM entries WHERE userid = ? and entrydate = ?";
+
+                PreparedStatement Validation;
+                try {
+                    Validation = c.prepareStatement(entryValidation);
+
+                    //Dia y la hora oB
+                    Validation.setString(1, userid);
+                    Validation.setString(2, Repository.getActualDay(Repository.getActualDateTime()));
+
+                    ResultSet rst = Validation.executeQuery();
+
+                    if (rst.next() == false) {
+
+                        output = true;
+
+                        String userIdQuery = "INSERT INTO user (entryid, userid, entrydate, entrytime, description) VALUES (default, ?, ?, ?, ?)";
+
+                    }
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            return output;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+            result.postValue(aBoolean);
+
+        }
     }
 }

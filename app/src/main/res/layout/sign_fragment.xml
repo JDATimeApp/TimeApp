@@ -31,6 +31,7 @@
         android:layout_below="@id/ll1"
         android:orientation="vertical">
         <EditText
+            android:id="@+id/txtDescription"
             android:layout_width="match_parent"
             android:layout_marginLeft="15dp"
             android:inputType="text"
