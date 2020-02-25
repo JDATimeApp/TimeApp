@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -52,25 +53,12 @@ public class loginFragment extends Fragment {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String us = username.getText().toString();
-               /*Boolean t =loginViewModel.checkLogin(username.getText().toString(),
-                       password.getText().toString(),
-                       getContext());
-               if (t == true){
                    SharedPreferences pref = getContext().getSharedPreferences("userInfo",0);
                    SharedPreferences.Editor ed = pref.edit();
                    String userId = loginViewModel.getUserId(us,getContext());
                    ed.putString("userId",userId).apply();
-                   Intent i = new Intent(getContext(), UserMainActivity.class);
-                   startActivity(i);
-                   //Fragment f = new signFragment();
-                   //FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                   //ft.replace(R.id.fragment_container,f).commit();
-                   //Creating the file for saving session user data when is validated
-                   Toast.makeText(getContext(),"Welcome to the app",Toast.LENGTH_SHORT).show();
-               } else {
-                   Toast.makeText(getContext(),"You are not registered!",Toast.LENGTH_SHORT).show();
-               }*/
 
                 LoginViewModel.loginUserTask loginUserTask = new LoginViewModel.loginUserTask(
                         username.getText().toString(),

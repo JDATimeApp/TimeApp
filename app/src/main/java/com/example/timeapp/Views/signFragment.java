@@ -22,15 +22,16 @@ import com.example.timeapp.ViewModels.signViewModel;
 public class signFragment extends Fragment {
 
     private com.example.timeapp.ViewModels.signViewModel signViewModel;
-
+    private String userId;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         signViewModel =
                 ViewModelProviders.of(this).get(signViewModel.class);
         View root = inflater.inflate(R.layout.sign_fragment, container, false);
+
         //Getting the user ID from sharedPreferences
         SharedPreferences pref = getContext().getSharedPreferences("userInfo",0);
-        final String userId  = pref.getString("userId","");
+        userId = pref.getString("userId","");
 
         Button entryBtn,leaveBtn;
         final EditText desc;
@@ -42,8 +43,6 @@ public class signFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                //signViewModel.setEntryTime(userId,getContext());
-                Boolean result;
                 signViewModel.signUserTask userTask = new signViewModel.signUserTask(userId,desc.getText().toString(),getContext());
 
                 userTask.getResult().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
@@ -52,7 +51,7 @@ public class signFragment extends Fragment {
                         if (aBoolean){
                             Toast.makeText(getContext(),"Checked in succesfully",Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(getContext(),"You hace checked in today!",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(),"You have checked in today!",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -65,7 +64,22 @@ public class signFragment extends Fragment {
         leaveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signViewModel.setLeaveTime(userId,getContext());
+
+                signViewModel.signOutUserTask signOut = new signViewModel.signOutUserTask(userId,getContext());
+
+                signOut.getResult().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+                    @Override
+                    public void onChanged(Boolean aBoolean) {
+                        if (aBoolean){
+                            Toast.makeText(getContext(),"See you tomorrow!",Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getContext(),"You have to check in first",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+                signOut.execute();
+
             }
         });
         return root;

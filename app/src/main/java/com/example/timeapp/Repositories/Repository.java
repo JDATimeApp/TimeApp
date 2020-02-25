@@ -126,9 +126,9 @@ public class Repository {
         return userList;
     }
 
-    public static void setEntryTime(String userId, Context c){
+    public static boolean setEntryTime(String userId, Context c){
         RoomConnection r = RoomConnection.getRoomConnection(c);
-
+        boolean output = false;
         Entry e = r.entryDao().checkEntry(userId,getActualDay(getActualDateTime()));
         if (e == null){
             Entry entry = new Entry();
@@ -136,31 +136,34 @@ public class Repository {
             entry.setEntryDate(getActualDay(getActualDateTime()));
             entry.setEntryTime(getActualHour(getActualDateTime()));
             r.entryDao().insertEntry(entry);
+            output = true;
             Log.i("Entry","No entry .. inserting new");
-            Toast.makeText(c,"Thank you for checking in!",Toast.LENGTH_SHORT).show();
+
         } else {
             Log.i("Entry","Found an entry");
-            Toast.makeText(c,"Already checked in today!",Toast.LENGTH_SHORT).show();
         }
         r.destroyRoomConnection();
         r.close();
+
+        return output;
     }
 
-    public static void setLeaveTime(String userId,Context c){
+    public static boolean setLeaveTime(String userId,Context c){
         RoomConnection r = RoomConnection.getRoomConnection(c);
-
+        boolean output = false;
         Entry e = r.entryDao().checkEntryDate(userId,getActualDay(getActualDateTime()));
         if (e == null){
             Log.i("Entry","Something went wrong inserting leave time");
-            Toast.makeText(c,"Oops.. Something went wrong!",Toast.LENGTH_SHORT).show();
         } else {
             e.setLeaveTime(getActualHour(getActualDateTime()));
             r.entryDao().updateLeaveTime(e);
             Log.i("Entry","Registered leave time");
-            Toast.makeText(c,"See you tomorrow!",Toast.LENGTH_SHORT).show();
+            output = true;
         }
         r.destroyRoomConnection();
         r.close();
+
+        return output;
     }
 
     public static List<Entry> getUserEntries(String userId,Context c){
@@ -210,8 +213,6 @@ public class Repository {
             }
 
         } catch (SQLException e) {
-            e.getSQLState();
-            e.printStackTrace();
             Log.d("PostgreSQL","Error connecting to PostgreSQL server");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

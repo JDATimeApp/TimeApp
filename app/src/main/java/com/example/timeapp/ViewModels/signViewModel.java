@@ -7,10 +7,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.timeapp.Repositories.Repository;
-import com.google.firebase.database.core.Repo;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -79,6 +77,17 @@ public class signViewModel extends ViewModel {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+            } else {
+                output = Repository.setEntryTime(userid,context);
+            }
+
+
+            if(c!=null){
+                try {
+                    c.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
 
             return output;
@@ -89,6 +98,85 @@ public class signViewModel extends ViewModel {
             super.onPostExecute(aBoolean);
             result.postValue(aBoolean);
 
+        }
+    }
+
+    public static class signOutUserTask extends AsyncTask<Void,Void,Boolean>{
+
+        String userId;
+        Context context;
+
+        private final MutableLiveData<Boolean> result = new MutableLiveData<>();
+
+        public MutableLiveData<Boolean> getResult() {
+            return result;
+        }
+
+        public signOutUserTask(String userId,Context context){
+            this.userId = userId;
+            this.context = context;
+        }
+
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            Boolean output = false;
+
+            Connection c = Repository.openPostgresConnection();
+
+            if (c != null) {
+
+                PreparedStatement checkEntryStatement;
+                String checkEntry = "SELECT * FROM entries WHERE userid = ? and entrydate = ? and leavetime IS NULL";
+
+                try {
+
+                    checkEntryStatement = c.prepareStatement(checkEntry);
+
+                    checkEntryStatement.setInt(1,Integer.parseInt(userId));
+                    checkEntryStatement.setString(2,Repository.getActualDay(Repository.getActualDateTime()));
+
+                    ResultSet rst = checkEntryStatement.executeQuery();
+
+                    if (rst.next()){
+
+                        PreparedStatement updateEntryStatement;
+
+                        String updateEntry = "UPDATE entries set leavetime = ? where userid = ? and entrydate = ? ";
+
+                        updateEntryStatement = c.prepareStatement(updateEntry);
+
+                        updateEntryStatement.setString(1,Repository.getActualHour(Repository.getActualDateTime()));
+                        updateEntryStatement.setInt(2,Integer.parseInt(userId));
+                        updateEntryStatement.setString(3,Repository.getActualDay(Repository.getActualDateTime()));
+
+                        updateEntryStatement.executeUpdate();
+                        output = true;
+                    }
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+            } else {
+                output = Repository.setLeaveTime(userId,context);
+            }
+
+            if(c!=null){
+                try {
+                    c.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            return output;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+            result.postValue(aBoolean);
         }
     }
 }
