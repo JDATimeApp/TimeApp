@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.timeapp.Repositories.Repository;
 import com.example.timeapp.UserMainActivity;
+import com.google.firebase.database.core.Repo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +23,6 @@ public class LoginViewModel extends ViewModel {
 
     public static boolean checkLogin(String username, String password, Context c){
         Boolean result = Repository.checkLogin(username,password,c);
-
         if (result == true){
             return true;
         } else {
@@ -102,11 +102,9 @@ public class LoginViewModel extends ViewModel {
                 if ((Repository.checkLogin(username,password,context)) == true){
                     Log.d("PostgreSQL","User "+username+" has been login - LiteSQL");
                     output = true;
-
                 } else {
                     Log.d("PostgreSQL","User "+password+" is already login - LiteSQL");
                     output = false;
-
                 }
             }
 
