@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 
 import com.example.timeapp.AdminMainActivity;
+import com.example.timeapp.Repositories.Repository;
 import com.example.timeapp.UserMainActivity;
 import com.example.timeapp.ViewModels.LoginViewModel;
 import com.example.timeapp.R;
@@ -53,6 +54,8 @@ public class loginFragment extends Fragment {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Repository.playOofSound();
 
                 String us = username.getText().toString();
                    SharedPreferences pref = getContext().getSharedPreferences("userInfo",0);

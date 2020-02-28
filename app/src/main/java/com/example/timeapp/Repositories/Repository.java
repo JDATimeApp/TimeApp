@@ -1,9 +1,11 @@
 package com.example.timeapp.Repositories;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.util.Log;
 
 import com.example.timeapp.Database.RoomConnection;
+import com.example.timeapp.R;
 import com.example.timeapp.models.Entry;
 import com.example.timeapp.models.Incidence;
 import com.example.timeapp.models.Users;
@@ -207,4 +209,14 @@ public class Repository {
         }
         return connection;
     }
+
+
+
+    // ****** MUSIC AND SOUND EFFECTS ******** //
+
+    public static void playOofSound(){
+        MediaPlayer sound = MediaPlayer.create(context, R.raw.oof);
+        sound.start();
+    }
+
 }

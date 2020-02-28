@@ -47,6 +47,8 @@ public class registerFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                Repository.playOofSound();
+
                 registerViewModel.insertUserTask insertUserTask = new registerViewModel.insertUserTask(
                         editTxtUsername.getText().toString(),
                         editTxtEmail.getText().toString(),
