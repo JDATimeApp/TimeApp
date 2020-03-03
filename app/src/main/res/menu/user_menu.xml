@@ -17,9 +17,19 @@
             android:icon="@drawable/ic_incidence"
             android:title="@string/incidence_nav"/>
         <item
-            android:id="@+id/nav_help"
+            android:id="@+id/nav_profile"
             android:icon="@drawable/ic_userprofile"
             android:title="@string/nav_profile"/>
+
     </group>
+
+    <item android:title="Others">
+        <menu>
+            <item
+                android:id="@+id/nav_help"
+                android:icon="@drawable/ic_help"
+                android:title="@string/nav_help"/>
+        </menu>
+    </item>
 
 </menu>

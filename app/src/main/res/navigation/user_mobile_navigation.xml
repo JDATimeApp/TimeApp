@@ -21,8 +21,13 @@
         android:name="com.example.timeapp.Views.reportIncidenceFragment"
         android:label="@string/incidence_nav" />
     <fragment
-        android:id="@+id/nav_help"
+        android:id="@+id/nav_profile"
         android:name="com.example.timeapp.Views.UserProfileFragment"
         android:label="user_profile"
         tools:layout="@layout/user_profile" />
+    <fragment
+        android:id="@+id/nav_help"
+        android:name="com.example.timeapp.Views.helpFragment"
+        android:label="fragment_help"
+        tools:layout="@layout/fragment_help" />
 </navigation>
