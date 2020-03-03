@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll1"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/userProfileImg"
+            android:layout_gravity="center"
+            android:layout_width="600px"
+            android:layout_height="600px"
+            android:src="@drawable/iconouser" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll2"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_below="@id/ll1"
+        android:layout_marginTop="50dp"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/usernameTxtView"
+            android:layout_width="match_parent"
+            android:hint="@string/txt_username"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textAlignment="center"
+            android:layout_height="50dp"/>
+
+        <EditText
+            android:id="@+id/emailTxtView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textAlignment="center"
+            android:hint="@string/email_address"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:id="@+id/passwordTxtView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="@string/txt_password"
+            android:textAlignment="center"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"/>
+
+        <Button
+            android:id="@+id/updateUsernameBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/update_username"
+            android:layout_margin="10dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

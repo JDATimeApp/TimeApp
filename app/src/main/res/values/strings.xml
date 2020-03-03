@@ -32,4 +32,5 @@
     <string name="message">Message</string>
     <string name="nav_header_subtitle">android.studio@gmail.com</string>
     <string name="incidence_from">From : </string>
+    <string name="update_username">Save changes</string>
 </resources>
