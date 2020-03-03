@@ -33,4 +33,6 @@
     <string name="nav_header_subtitle">android.studio@gmail.com</string>
     <string name="incidence_from">From : </string>
     <string name="update_username">Save changes</string>
+    <string name="nav_help">Help</string>
+    <string name="nav_profile">My profile</string>
 </resources>

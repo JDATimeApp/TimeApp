@@ -16,5 +16,10 @@
             android:id="@+id/nav_incidence"
             android:icon="@drawable/ic_incidence"
             android:title="@string/incidence_nav"/>
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@drawable/ic_userprofile"
+            android:title="@string/nav_profile"/>
     </group>
+
 </menu>
