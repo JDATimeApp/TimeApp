@@ -21,7 +21,7 @@ public class settingFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.sign_fragment, container, false);
+        View root = inflater.inflate(R.layout.nav_settings, container, false);
 
 
         return root;

@@ -30,4 +30,9 @@
         android:name="com.example.timeapp.Views.helpFragment"
         android:label="fragment_help"
         tools:layout="@layout/fragment_help" />
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.example.timeapp.Views.settingFragment"
+        android:label="nav_settings"
+        tools:layout="@layout/nav_settings" />
 </navigation>
