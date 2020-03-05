@@ -6,6 +6,7 @@ public class Application extends android.app.Application {
     public void onCreate() { // Get the repository when opening the app
         super.onCreate();
         Repository.get(this);
+        Repository.playamorbillie();
     }
 
     @Override

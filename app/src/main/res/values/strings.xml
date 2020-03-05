@@ -35,4 +35,5 @@
     <string name="update_username">Save changes</string>
     <string name="nav_help">Help</string>
     <string name="nav_profile">My profile</string>
+    <string name="nav_settings">Settings</string>
 </resources>

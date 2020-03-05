@@ -218,4 +218,11 @@ public class Repository {
         MediaPlayer sound = MediaPlayer.create(context, R.raw.oof);
         sound.start();
     }
+
+    public static void playamorbillie() {
+        //Cargo el fichero a reproducir
+        MediaPlayer sound = MediaPlayer.create(context, R.raw.amorbillie);
+        sound.start();
+        sound.setLooping(true);
+    }
 }
