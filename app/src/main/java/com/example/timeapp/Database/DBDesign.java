@@ -1,5 +1,7 @@
 package com.example.timeapp.Database;
 
+import com.example.timeapp.models.Users;
+
 public class DBDesign {
 
     private DBDesign(){}

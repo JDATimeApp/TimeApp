@@ -6,7 +6,6 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.example.timeapp.Database.DBDesign;
-import com.google.firebase.database.annotations.NotNull;
 
 import java.io.Serializable;
 
