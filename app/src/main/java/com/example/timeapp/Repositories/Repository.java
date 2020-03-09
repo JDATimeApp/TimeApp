@@ -219,10 +219,26 @@ public class Repository {
         sound.start();
     }
 
-    public static void playamorbillie() {
+    static MediaPlayer sound;
+
+    public static boolean playamorbillie() {
         //Cargo el fichero a reproducir
-        MediaPlayer sound = MediaPlayer.create(context, R.raw.amorbillie);
-        sound.start();
-        sound.setLooping(true);
+        sound = MediaPlayer.create(context, R.raw.amorbillie);
+
+        if (sound.isPlaying()) {
+            sound.stop();
+            return false;
+        } else {
+            sound.start();
+            sound.setLooping(true);
+            return true;
+        }
     }
+
+    /*@Override
+    protected void onStop() {
+        super.onStop();
+        sound.release();
+    }*/
+
 }
