@@ -18,5 +18,10 @@
     <fragment
         android:id="@+id/incidence_info"
         android:name="com.example.timeapp.Views.incidenceInfo"/>
+    <fragment
+        android:id="@+id/nav_controlpanel"
+        android:name="com.example.timeapp.Views.controlPanelFragment"
+        android:label="control_panel"
+        tools:layout="@layout/control_panel" />
 
 </navigation>

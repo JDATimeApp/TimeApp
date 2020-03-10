@@ -39,4 +39,5 @@
     
     <string name="add_department">Add department</string>
     <string name="department_name">Department</string>
+    <string name="item_controlpanel">Control Panel</string>
 </resources>
