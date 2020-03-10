@@ -1,16 +1,25 @@
 package com.example.timeapp.Repositories;
 
+import android.app.Activity;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.util.Log;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.timeapp.Database.RoomConnection;
+import com.example.timeapp.Dialogs.DepartmentExistsDialog;
 import com.example.timeapp.R;
 import com.example.timeapp.models.Entry;
 import com.example.timeapp.models.Incidence;
 import com.example.timeapp.models.Users;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 import java.sql.Connection;
@@ -210,8 +219,31 @@ public class Repository {
         return connection;
     }
 
-    // ******* USER PROFILE ********* //
+    public static void addDepartment(String department, final FragmentManager fm){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference dptRef = database.getReference().child("Departments").child(department);
 
+        if (department.isEmpty()){
+            Toast.makeText(context,"Department name must not be null!",Toast.LENGTH_SHORT).show();
+        } else {
+            dptRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                  if (dataSnapshot.exists()){
+                      DepartmentExistsDialog de = new DepartmentExistsDialog();
+                      de.show(fm,"Department already exists");
+                  } else {
+                      dptRef.setValue("");
+
+                  }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.d("DepartmentError","Error ocurred while adding a new department");
+                }
+            });
+        }
+    }
     
 
     // ****** MUSIC AND SOUND EFFECTS ******** //

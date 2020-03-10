@@ -33,6 +33,14 @@ public class controlPanelFragment extends Fragment {
         departmentsRV = root.findViewById(R.id.departmentRV);
         addDepartmentBtn = root.findViewById(R.id.addDepartmentBtn);
 
+        addDepartmentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                controlPanelViewModel.addDepartment(departmentNameTxt.getText().toString(),getFragmentManager());
+            }
+        });
+
+
         return root;
     }
 }
