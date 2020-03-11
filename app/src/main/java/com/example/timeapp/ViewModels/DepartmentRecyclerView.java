@@ -15,6 +15,10 @@ public class DepartmentRecyclerView extends RecyclerView.Adapter<DepartmentRecyc
 
     private ArrayList<String> departments;
 
+    public DepartmentRecyclerView(ArrayList<String> d){
+        this.departments = d;
+    }
+
     public void setDepartments(ArrayList<String> departments) {
         this.departments = departments;
     }
@@ -41,7 +45,7 @@ public class DepartmentRecyclerView extends RecyclerView.Adapter<DepartmentRecyc
 
         public DepartmentViewHolder(View itemView) {
             super(itemView);
-            departmentName = itemView.findViewById(R.id.departmentNameEditTxt);
+            departmentName = itemView.findViewById(R.id.departmentNameTxt);
         }
     }
 
