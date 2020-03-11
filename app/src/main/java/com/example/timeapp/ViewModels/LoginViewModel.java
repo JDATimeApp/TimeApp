@@ -83,14 +83,17 @@ public class LoginViewModel extends ViewModel {
                         if (r != null){
 
                             String userId = "";
+                            String username = "";
 
                             while (r.next()){
                                 userId = r.getString(1);
+                                username = r.getString(2);
                             }
 
                             SharedPreferences pref = context.getSharedPreferences("userInfo",0);
                             SharedPreferences.Editor ed = pref.edit();
                             ed.putString("userId",userId).apply();
+                            ed.putString("username",username).apply();
 
                         }
                     }
