@@ -72,6 +72,9 @@ public class signViewModel extends ViewModel {
                         insert.setString(4,description);
 
                         insert.executeQuery();
+
+                        Repository.setEntryTime(userid,context);
+
                     }
 
                 } catch (SQLException e) {
@@ -151,6 +154,8 @@ public class signViewModel extends ViewModel {
                         updateEntryStatement.setString(3,Repository.getActualDay(Repository.getActualDateTime()));
 
                         updateEntryStatement.executeUpdate();
+                        Repository.setLeaveTime(userId,context);
+
                         output = true;
                     }
 

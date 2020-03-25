@@ -269,10 +269,4 @@ public class Repository {
         }
     }
 
-    /*@Override
-    protected void onStop() {
-        super.onStop();
-        sound.release();
-    }*/
-
 }

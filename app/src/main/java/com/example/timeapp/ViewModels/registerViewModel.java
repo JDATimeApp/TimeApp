@@ -78,7 +78,12 @@ public class registerViewModel extends ViewModel {
 
                         insertNewUser.executeUpdate(); // Executing the query
 
+                        // Registering user in room aswell
+                        Repository.registerNewUser(email,username,password,context);
+
                         Log.d("PostgreSQL","ResultSet is empty");
+
+
                         output = true;
 
                     } else {
