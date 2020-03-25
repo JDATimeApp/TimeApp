@@ -10,16 +10,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.timeapp.R;
 import com.example.timeapp.ViewModels.UserProfileViewModel;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -29,6 +32,8 @@ public class UserProfileFragment extends Fragment {
 
     private ImageView userProfileImageView;
     private EditText username,email,password;
+    private Spinner spinnerDepartments;
+    private ArrayList<String> departments;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,6 +46,8 @@ public class UserProfileFragment extends Fragment {
         username = root.findViewById(R.id.usernameTxtView);
         email = root.findViewById(R.id.emailTxtView);
         password = root.findViewById(R.id.passwordTxtView);
+        spinnerDepartments = root.findViewById(R.id.departmentList);
+        departments = new ArrayList<>();
 
         userProfileImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +58,14 @@ public class UserProfileFragment extends Fragment {
             }
         });
 
+        userProfileViewModel.getDepartments();
 
+        userProfileViewModel.getDepartmentList().observe(this, new Observer<ArrayList<String>>() {
+            @Override
+            public void onChanged(ArrayList<String> out) {
+                spinnerDepartments.setAdapter(userProfileViewModel.populateSpinner(out,getContext()));
+            }
+        });
 
         return root;
     }
