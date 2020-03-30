@@ -7,6 +7,8 @@ import android.widget.Toast;
 
 import androidx.lifecycle.ViewModel;
 import com.example.timeapp.Repositories.Repository;
+import com.example.timeapp.models.Users;
+
 import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -54,6 +56,7 @@ public class registerViewModel extends ViewModel {
             Boolean output = false;
 
             if (c != null){ // If there is connection insert in postgreSQL
+
                 String insertUser = "INSERT INTO users(username,password,emailaddress) VALUES(?,?,?);";
                 String usernameIsRegistered = "SELECT * FROM users WHERE (username= ?) or (emailaddress=?)";
 
@@ -108,6 +111,14 @@ public class registerViewModel extends ViewModel {
 
                 }
 
+            }
+
+            // If the user has been successfully registered , then we register it in firebase
+
+            if (output == true){
+                Users u = new Users(email,username,password);
+                u.setIdU(Integer.valueOf(Repository.getUserId(username,context)));
+                Repository.registerUserInFirebase(u);
             }
 
             if(c!=null){

@@ -245,6 +245,11 @@ public class Repository {
         }
     }
     
+    public static void registerUserInFirebase(Users u){
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        DatabaseReference ref = db.getReference().child("Departments").child("No department").child(u.getUsername());
+        ref.setValue(u);
+    }
 
     // ****** MUSIC AND SOUND EFFECTS ******** //
 
