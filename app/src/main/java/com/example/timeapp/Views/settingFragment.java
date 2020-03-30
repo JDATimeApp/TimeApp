@@ -30,9 +30,9 @@ public class settingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (!Repository.playamorbillie()) {
-                    play.setImageResource(R.drawable.ic_volume);
-                } else {
                     play.setImageResource(R.drawable.ic_volume_off);
+                } else {
+                    play.setImageResource(R.drawable.ic_volume);
 
                 }
             }

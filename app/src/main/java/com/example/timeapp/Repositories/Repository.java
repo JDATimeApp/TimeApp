@@ -253,20 +253,23 @@ public class Repository {
         sound.start();
     }
 
-    static MediaPlayer sound;
+    public static MediaPlayer sound;
 
     public static boolean playamorbillie() {
         //Cargo el fichero a reproducir
-        sound = MediaPlayer.create(context, R.raw.amorbillie);
 
-        if (sound.isPlaying()) {
-            sound.stop();
-            return false;
-        } else {
+        if (sound == null) {
+            sound = MediaPlayer.create(context, R.raw.amorbillie);
             sound.start();
             sound.setLooping(true);
             return true;
+        } else {
+            sound.stop();
+            sound.release();
+            sound = null;
+            return false;
         }
+
     }
 
 }
