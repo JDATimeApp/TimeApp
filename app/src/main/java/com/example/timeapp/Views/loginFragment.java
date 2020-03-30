@@ -57,12 +57,6 @@ public class loginFragment extends Fragment {
 
                 Repository.playOofSound();
 
-                String us = username.getText().toString();
-                   SharedPreferences pref = getContext().getSharedPreferences("userInfo",0);
-                   SharedPreferences.Editor ed = pref.edit();
-                   String userId = loginViewModel.getUserId(us,getContext());
-                   ed.putString("userId",userId).apply();
-
                 LoginViewModel.loginUserTask loginUserTask = new LoginViewModel.loginUserTask(
                         username.getText().toString(),
                         password.getText().toString(),

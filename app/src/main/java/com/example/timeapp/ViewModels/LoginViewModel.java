@@ -38,6 +38,7 @@ public class LoginViewModel extends ViewModel {
         private String username;
         private String password;
         private Context context;
+        private String usernameShared = "" , idShared = "";
 
         private final MutableLiveData<Boolean> result = new MutableLiveData<>();
 
@@ -81,20 +82,10 @@ public class LoginViewModel extends ViewModel {
 
                         ResultSet r = user.executeQuery();
                         if (r != null){
-
-                            String userId = "";
-                            String username = "";
-
                             while (r.next()){
-                                userId = r.getString(1);
-                                username = r.getString(2);
+                                idShared = r.getString(1);
+                                usernameShared = r.getString(2);
                             }
-
-                            SharedPreferences pref = context.getSharedPreferences("userInfo",0);
-                            SharedPreferences.Editor ed = pref.edit();
-                            ed.putString("userId",userId).apply();
-                            ed.putString("username",username).apply();
-
                         }
                     }
 
@@ -103,6 +94,8 @@ public class LoginViewModel extends ViewModel {
                 }
             } else {
                 if ((Repository.checkLogin(username,password,context)) == true){
+                    idShared = Repository.getUserId(username,context);
+                    usernameShared = username;
                     Log.d("PostgreSQL","User "+username+" has been login - LiteSQL");
                     output = true;
                 } else {
@@ -118,6 +111,17 @@ public class LoginViewModel extends ViewModel {
                     e.printStackTrace();
                 }
             }
+
+            // Once user is validated , ID and username is writed in SharedPreferences
+
+            if (output){
+                SharedPreferences pref = context.getSharedPreferences("userInfo",0);
+                SharedPreferences.Editor ed = pref.edit();
+                ed.putString("userId",idShared);
+                ed.putString("username",usernameShared);
+                ed.apply();
+            }
+
 
             return output;
         }

@@ -1,6 +1,5 @@
 package com.example.timeapp.Repositories;
 
-import android.app.Activity;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.util.Log;
@@ -234,7 +233,6 @@ public class Repository {
                       de.show(fm,"Department already exists");
                   } else {
                       dptRef.setValue("");
-
                   }
                 }
                 @Override

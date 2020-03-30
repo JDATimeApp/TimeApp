@@ -1,6 +1,5 @@
 package com.example.timeapp.Views;
 
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +32,6 @@ public class settingFragment extends Fragment {
                     play.setImageResource(R.drawable.ic_volume_off);
                 } else {
                     play.setImageResource(R.drawable.ic_volume);
-
                 }
             }
         });
