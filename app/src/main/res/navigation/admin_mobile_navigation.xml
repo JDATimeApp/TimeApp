@@ -23,5 +23,10 @@
         android:name="com.example.timeapp.Views.controlPanelFragment"
         android:label="control_panel"
         tools:layout="@layout/control_panel" />
+    <fragment
+        android:id="@+id/nav_departmentUserList"
+        android:name="com.example.timeapp.Views.DepartmentUserListFragment"
+        android:label="department_userlist"
+        tools:layout="@layout/department_userlist" />
 
 </navigation>

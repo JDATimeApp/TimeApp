@@ -50,7 +50,7 @@ public class UserProfileViewModel extends ViewModel {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot d : dataSnapshot.getChildren()){
-                    if (!d.getKey().equals("No department")){
+                    if (!d.getKey().equals("NoDepartment")){
                         departments.add(d.getKey());
                         departmentList.postValue(departments);
                     }

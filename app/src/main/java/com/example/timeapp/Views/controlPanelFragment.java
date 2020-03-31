@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,7 +25,7 @@ public class controlPanelFragment extends Fragment {
 
     private ControlPanelViewModel controlPanelViewModel;
     private RecyclerView departmentsRV;
-    private ArrayList<String> departmentList;
+    private ArrayList<String> departmentList = new ArrayList<>();
     private EditText departmentNameTxt;
     private Button addDepartmentBtn;
 
@@ -38,13 +39,11 @@ public class controlPanelFragment extends Fragment {
         departmentNameTxt = root.findViewById(R.id.departmentNameEditTxt);
         departmentsRV = root.findViewById(R.id.departmentRV);
         addDepartmentBtn = root.findViewById(R.id.addDepartmentBtn);
-        departmentList = new ArrayList<>();
 
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         departmentsRV.setLayoutManager(llm);
 
-        final DepartmentRecyclerView adapter = new DepartmentRecyclerView(departmentList);
-
+        final DepartmentRecyclerView adapter = new DepartmentRecyclerView(departmentList, Navigation.findNavController(getActivity(),R.id.nav_host_adminfragment));
         controlPanelViewModel.getDepartments();
 
         controlPanelViewModel.getDepartmentList().observe(this,
@@ -57,6 +56,7 @@ public class controlPanelFragment extends Fragment {
                     }
                 });
 
+        departmentList.clear();
         departmentsRV.setAdapter(adapter);
 
         addDepartmentBtn.setOnClickListener(new View.OnClickListener() {
