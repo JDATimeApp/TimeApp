@@ -8,6 +8,7 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -34,6 +35,7 @@ public class UserProfileFragment extends Fragment {
     private EditText username,email,password;
     private Spinner spinnerDepartments;
     private ArrayList<String> departments;
+    private Button updateUser;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,6 +49,7 @@ public class UserProfileFragment extends Fragment {
         email = root.findViewById(R.id.emailTxtView);
         password = root.findViewById(R.id.passwordTxtView);
         spinnerDepartments = root.findViewById(R.id.departmentList);
+        updateUser = root.findViewById(R.id.updateUsernameBtn);
         departments = new ArrayList<>();
 
         userProfileImageView.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +67,13 @@ public class UserProfileFragment extends Fragment {
             @Override
             public void onChanged(ArrayList<String> out) {
                 spinnerDepartments.setAdapter(userProfileViewModel.populateSpinner(out,getContext()));
+            }
+        });
+
+        updateUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                userProfileViewModel.moveUserDepartment(spinnerDepartments.getSelectedItem().toString(),getContext());
             }
         });
 
