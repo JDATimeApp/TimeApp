@@ -22,6 +22,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.timeapp.R;
 import com.example.timeapp.ViewModels.UserProfileViewModel;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -57,12 +58,21 @@ public class UserProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivityForResult(UserProfileViewModel.chargeImageGalery(),10);
-
-
             }
         });
 
+
         userProfileViewModel.getDepartments();
+        userProfileViewModel.downloadUserProfileImage(userProfileViewModel.getSharedUsername(getContext()));
+
+        userProfileViewModel.getProfileImageUri().observe(getViewLifecycleOwner(), new Observer<Uri>() {
+            @Override
+            public void onChanged(Uri uri) {
+                if (uri != null){
+                    Picasso.with(getContext()).load(uri).into(userProfileImageView);
+                }
+            }
+        });
 
         userProfileViewModel.getDepartmentList().observe(this, new Observer<ArrayList<String>>() {
             @Override
@@ -93,10 +103,7 @@ public class UserProfileFragment extends Fragment {
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),uri);
 
-                final SharedPreferences sp = getContext().getSharedPreferences("userInfo",0);
-                final String username = sp.getString("username","");
-
-                userProfileViewModel.uploadUserProfileImage(uri,username);
+                userProfileViewModel.uploadUserProfileImage(uri,userProfileViewModel.getSharedUsername(getContext()));
                 userProfileImageView.setImageBitmap(bitmap);
             } catch (IOException e) {
                 e.printStackTrace();

@@ -16,27 +16,35 @@ import androidx.lifecycle.ViewModel;
 import com.example.timeapp.R;
 import com.example.timeapp.Repositories.Repository;
 import com.example.timeapp.models.Users;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
 public class UserProfileViewModel extends ViewModel {
 
     private MutableLiveData<ArrayList<String>> departmentList;
+    private MutableLiveData<Uri> profileImageUri;
     private ArrayList<String> departments;
 
     public UserProfileViewModel(){
         departmentList = new MutableLiveData<ArrayList<String>>();
+        profileImageUri = new MutableLiveData<>();
         departments = new ArrayList<>();
     }
 
     public MutableLiveData<ArrayList<String>> getDepartmentList() {
         return departmentList;
     }
+
+    public MutableLiveData<Uri> getProfileImageUri() {return profileImageUri;}
 
     public static Intent chargeImageGalery(){
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -117,6 +125,30 @@ public class UserProfileViewModel extends ViewModel {
 
     public static void uploadUserProfileImage(Uri uri, String username){
         Repository.uploadUserProfileImage(uri,username);
+    }
+
+    public void downloadUserProfileImage(String username){
+
+        StorageReference ref = FirebaseStorage.getInstance().getReference().child(username);
+
+        ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                profileImageUri.postValue(uri);
+            }
+        })
+            .addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.d("Profile","Error downloading profile image");
+                }
+            });
+    }
+
+    public String getSharedUsername(Context context){
+        SharedPreferences pref = context.getSharedPreferences("userInfo",0);
+        String username = pref.getString("username","");
+        return username;
     }
 
 }
