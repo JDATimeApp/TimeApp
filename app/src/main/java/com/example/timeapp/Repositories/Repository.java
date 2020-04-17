@@ -2,6 +2,7 @@ package com.example.timeapp.Repositories;
 
 import android.content.Context;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -14,11 +15,16 @@ import com.example.timeapp.R;
 import com.example.timeapp.models.Entry;
 import com.example.timeapp.models.Incidence;
 import com.example.timeapp.models.Users;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 
 import java.sql.Connection;
@@ -273,6 +279,24 @@ public class Repository {
             return false;
         }
 
+    }
+
+    public static void uploadUserProfileImage(Uri uri, String username){
+
+        StorageReference ref = FirebaseStorage.getInstance().getReference().child(username);
+
+        ref.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Log.d("Profile","Image uploaded successfully");
+            }
+
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("Profile","Error uploading profile image");
+            }
+        });
     }
 
 }

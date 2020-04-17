@@ -1,6 +1,7 @@
 package com.example.timeapp.Views;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -91,16 +92,17 @@ public class UserProfileFragment extends Fragment {
 
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),uri);
+
+                final SharedPreferences sp = getContext().getSharedPreferences("userInfo",0);
+                final String username = sp.getString("username","");
+
+                userProfileViewModel.uploadUserProfileImage(uri,username);
                 userProfileImageView.setImageBitmap(bitmap);
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
         }
-
-
-
-
 
     }
 }

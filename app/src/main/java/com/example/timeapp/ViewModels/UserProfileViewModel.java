@@ -4,6 +4,7 @@ package com.example.timeapp.ViewModels;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -13,6 +14,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.timeapp.R;
+import com.example.timeapp.Repositories.Repository;
 import com.example.timeapp.models.Users;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -111,6 +113,10 @@ public class UserProfileViewModel extends ViewModel {
                     Log.d("Firebase","Some problem while looking for the user");
                 }
             });
+    }
+
+    public static void uploadUserProfileImage(Uri uri, String username){
+        Repository.uploadUserProfileImage(uri,username);
     }
 
 }
