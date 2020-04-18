@@ -18,15 +18,23 @@
     <fragment
         android:id="@+id/incidence_info"
         android:name="com.example.timeapp.Views.incidenceInfo"/>
+
     <fragment
         android:id="@+id/nav_controlpanel"
         android:name="com.example.timeapp.Views.controlPanelFragment"
         android:label="control_panel"
         tools:layout="@layout/control_panel" />
+
     <fragment
         android:id="@+id/nav_departmentUserList"
         android:name="com.example.timeapp.Views.DepartmentUserListFragment"
         android:label="department_userlist"
         tools:layout="@layout/department_userlist" />
+
+    <fragment
+        android:id="@+id/nav_dirUserProfileFragment"
+        android:name="com.example.timeapp.Views.DirUserProfileFragment"
+        android:label="dir_userprofile"
+        tools:layout="@layout/dir_userprofile" />
 
 </navigation>

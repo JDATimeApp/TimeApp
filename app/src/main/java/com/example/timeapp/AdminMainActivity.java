@@ -21,7 +21,7 @@ public class AdminMainActivity extends AppCompatActivity {
         DrawerLayout drawer = findViewById(R.id.drawer_adminlayout);
         NavigationView navigationView = findViewById(R.id.nav_adminview);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_adminHistory,R.id.nav_incidenceHistory)
+                R.id.nav_adminHistory,R.id.nav_incidenceHistory,R.id.nav_dirUserProfileFragment)
                 .setDrawerLayout(drawer).build();
 
         NavController navController = Navigation.findNavController(this,R.id.nav_host_adminfragment);
