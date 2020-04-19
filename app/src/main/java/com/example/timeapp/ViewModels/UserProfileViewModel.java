@@ -80,7 +80,7 @@ public class UserProfileViewModel extends ViewModel {
         return new ArrayAdapter<String>(c,R.layout.support_simple_spinner_dropdown_item, dpt);
     }
 
-    public void moveUserDepartment(final String department,Context c) {
+    public void moveOrAddUserDepartment(final String department,Context c) {
             FirebaseDatabase db = FirebaseDatabase.getInstance();
             final DatabaseReference oldRef = db.getReference().child("Departments");
 
@@ -90,7 +90,7 @@ public class UserProfileViewModel extends ViewModel {
             oldRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+                    boolean found = false;
                     // This label is made to break the double for loop
                     outer:
                     for (DataSnapshot depts : dataSnapshot.getChildren()){
@@ -110,8 +110,15 @@ public class UserProfileViewModel extends ViewModel {
 
                                 DatabaseReference newRef = oldRef.child(department).child(u.getUsername());
                                 newRef.setValue(u);
+
+                                found = true;
+
                                 break outer;
                             }
+/*
+                            if (!found){
+                                //DatabaseReference newUser = oldRef.child(department).child();
+                            } */
                         }
                     }
                 }

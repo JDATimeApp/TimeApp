@@ -1,5 +1,6 @@
 package com.example.timeapp.Views;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.timeapp.R;
 import com.example.timeapp.ViewModels.DirUserProfileViewModel;
 import com.example.timeapp.models.Users;
+import com.squareup.picasso.Picasso;
 
 public class DirUserProfileFragment extends Fragment {
 
@@ -34,6 +36,16 @@ public class DirUserProfileFragment extends Fragment {
         if (getArguments() != null) {
             dirUserProfileViewModel.getUserInformation(getArguments().getString("username"),
                     getArguments().getString("department"));
+
+            dirUserProfileViewModel.downloadUserProfileImage(getArguments().getString("username"));
+
+            dirUserProfileViewModel.getUserProfileImage().observe(getViewLifecycleOwner(), new Observer<Uri>() {
+                @Override
+                public void onChanged(Uri uri) {
+                    Picasso.with(getContext()).load(uri).into(profileImage);
+                }
+            });
+
         }
 
         dirUserProfileViewModel.getUserInformation().observe(getViewLifecycleOwner(), new Observer<Users>() {

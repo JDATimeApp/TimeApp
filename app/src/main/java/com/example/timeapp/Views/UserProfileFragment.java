@@ -84,7 +84,7 @@ public class UserProfileFragment extends Fragment {
         updateUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                userProfileViewModel.moveUserDepartment(spinnerDepartments.getSelectedItem().toString(),getContext());
+                userProfileViewModel.moveOrAddUserDepartment(spinnerDepartments.getSelectedItem().toString(),getContext());
             }
         });
 
