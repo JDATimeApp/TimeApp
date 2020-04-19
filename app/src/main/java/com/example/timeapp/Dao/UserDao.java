@@ -32,4 +32,7 @@ public interface UserDao {
 
     @Query("SELECT UserID FROM "+ DBDesign.UserDesign.USER_TABLE+" WHERE username=:username")
     int  getUserId(String username);
+
+    @Query("SELECT * FROM "+DBDesign.UserDesign.USER_TABLE+" WHERE username=:username")
+    Users getUserByUsername(String username);
 }

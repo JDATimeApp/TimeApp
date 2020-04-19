@@ -80,7 +80,7 @@ public class UserProfileViewModel extends ViewModel {
         return new ArrayAdapter<String>(c,R.layout.support_simple_spinner_dropdown_item, dpt);
     }
 
-    public void moveOrAddUserDepartment(final String department,Context c) {
+    public void moveOrAddUserDepartment(final String department, final Context c) {
             FirebaseDatabase db = FirebaseDatabase.getInstance();
             final DatabaseReference oldRef = db.getReference().child("Departments");
 
@@ -115,10 +115,13 @@ public class UserProfileViewModel extends ViewModel {
 
                                 break outer;
                             }
-/*
+
                             if (!found){
-                                //DatabaseReference newUser = oldRef.child(department).child();
-                            } */
+                                String username = getSharedUsername(c);
+
+                                DatabaseReference newUser = oldRef.child(department).child(username);
+                                newUser.setValue(Repository.getUserByUsername(username));
+                            }
                         }
                     }
                 }

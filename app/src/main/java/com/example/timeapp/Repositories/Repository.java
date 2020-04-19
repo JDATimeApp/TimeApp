@@ -132,6 +132,16 @@ public class Repository {
         return userList;
     }
 
+    public static Users getUserByUsername(String username){
+        RoomConnection ro = RoomConnection.getRoomConnection(context);
+        Users u = ro.userDao().getUserByUsername(username);
+
+        ro.destroyRoomConnection();
+        ro.close();
+
+        return u;
+    }
+
     public static boolean setEntryTime(String userId, Context c){
         RoomConnection ro = RoomConnection.getRoomConnection(c);
         boolean output = false;
