@@ -8,15 +8,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.timeapp.R;
 import com.example.timeapp.ViewModels.DirUserProfileViewModel;
+import com.example.timeapp.models.Users;
 
 public class DirUserProfileFragment extends Fragment {
 
     private DirUserProfileViewModel dirUserProfileViewModel;
-    private TextView usernameTxtView,emailTxtView,passwordTxtView;
+    private TextView usernameTxtView,emailTxtView;
     private ImageView profileImage;
 
     @Override
@@ -28,7 +30,21 @@ public class DirUserProfileFragment extends Fragment {
 
         usernameTxtView = root.findViewById(R.id.usernameDirTxtView);
         emailTxtView = root.findViewById(R.id.emailDirTxtView);
-        passwordTxtView = root.findViewById(R.id.passwordDirTxtView);
+
+        if (getArguments() != null) {
+            dirUserProfileViewModel.getUserInformation(getArguments().getString("username"),
+                    getArguments().getString("department"));
+        }
+
+        dirUserProfileViewModel.getUserInformation().observe(getViewLifecycleOwner(), new Observer<Users>() {
+            @Override
+            public void onChanged(Users users) {
+                if (users != null) {
+                    usernameTxtView.setText(users.getUsername());
+                    emailTxtView.setText(users.getEmailAddress());
+                }
+            }
+        });
 
         return root;
     }

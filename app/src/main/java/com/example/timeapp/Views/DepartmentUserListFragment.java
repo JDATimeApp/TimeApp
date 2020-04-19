@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,7 +40,8 @@ public class DepartmentUserListFragment extends Fragment {
             DepartmentUserListViewModel.GetDepartmentUsers users =
                     new DepartmentUserListViewModel.GetDepartmentUsers(getArguments().getString("department"));
 
-            final DepartmentUserRecyclerView drv = new DepartmentUserRecyclerView(userList);
+            final DepartmentUserRecyclerView drv = new DepartmentUserRecyclerView(userList, Navigation.findNavController(getActivity(),R.id.nav_host_adminfragment),
+                    getArguments().getString("department"));
 
             users.execute();
 
