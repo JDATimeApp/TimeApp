@@ -26,7 +26,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_below="@id/ll1"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="100dp"
         android:layout_height="wrap_content">
 
         <TextView
@@ -47,18 +47,6 @@
             android:layout_height="50dp"
             android:textAlignment="center"
             android:hint="@string/email_address"
-            android:gravity="center"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="10dp"/>
-
-        <TextView
-            android:id="@+id/passwordDirTxtView"
-            android:background="@drawable/background_text_edit"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="@string/txt_password"
-            android:textAlignment="center"
             android:gravity="center"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
